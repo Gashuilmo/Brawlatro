@@ -1,0 +1,17 @@
+{
+	"id": "Brawlatro",
+	"name": "Brawlatro",
+	"display_name": "Brawlatro",
+	"author": ["Gashuilmo"],
+	"description": "Why is the Jester so op",
+	"prefix": "brawl",
+	"main_file": "Brawlatro.lua",
+	"priority": 0,
+	"badge_colour": "ffbe20",
+	"badge_text_colour": "FFFFFF",
+	"version": "1.0.0",
+	"dependencies": [
+	],
+	"conflicts": [
+	]
+}
