@@ -297,7 +297,6 @@ SMODS.Joker{
 }
 
 --Meeple
---Clancy
 SMODS.Atlas{
     key = 'cheater',
     path = 'meeple.png',
@@ -345,8 +344,6 @@ SMODS.Joker{
         G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.slot
         G.GAME.shop.joker_max = G.GAME.shop.joker_max + card.ability.extra.slot
         G.hand.config.highlighted_limit = G.hand.config.highlighted_limit + card.ability.extra.highlighted
-        --G.GAME.change_booster_limit =  G.GAME.change_booster_limit + card.ability.extra.slot
-        --G.GAME.shop.voucher_max = G.GAME.shop.voucher_max + card.ability.extra.slot
     end,
     remove_from_deck = function(self, card, from_debuff)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hand
@@ -356,18 +353,14 @@ SMODS.Joker{
         G.hand:change_size(-card.ability.extra.h_size)
         G.jokers.config.card_limit = G.jokers.config.card_limit - card.ability.extra.jokerslots
         G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.slot
+        G.GAME.shop.joker_max = G.GAME.shop.joker_max - card.ability.extra.slot
         G.hand.config.highlighted_limit = G.hand.config.highlighted_limit -  card.ability.extra.highlighted
-        --G.GAME.change_booster_limit =  G.GAME.change_booster_limit - card.ability.extra.slot
-        --G.GAME.shop.voucher_max = G.GAME.shop.voucher_max - card.ability.extra.slot
     end,
 
 calculate = function(self, card, context)
     if context.starting_shop then
             G.shop:recalculate()
     end 
-    if edition == "negative" then
-        jokerslots = jokerslots - 1
-    end
 end,
 }
 
@@ -454,7 +447,7 @@ SMODS.Joker{
         text = { 
                 "Baby Shark Doo Doo",
                 "Get {C:money}20${} after defeating the curse",
-                "Debuff should last around {C:attention}3{} rounds",
+                "Debuff last {C:attention}#2#{}/3 more rounds",
                 },
         },
     atlas = 'grisgris',
@@ -487,6 +480,61 @@ SMODS.Joker{
             card.ability.extra.round = card.ability.extra.round + 1
             if card.ability.extra.round >= card.ability.extra.maxround then 
             ease_dollars(20)
+            card:start_dissolve({G.C.RED})
+            card = nil 
+            return {    
+            play_sound("brawl_defeatcurse")
+            }
+            end
+        end
+    end,
+}
+
+SMODS.Joker{
+    key = 'grisgris3',
+    loc_txt= {
+        name = 'Gris-Gris3',
+        text = { 
+                "2008 is back in the menu",
+                "Get {C:money}20${} after defeating the curse",
+                "Debuff last {C:attention}#2#{}/3 more rounds",
+                },
+        },
+    atlas = 'grisgris',
+    rarity = "brawl_cursed",
+    cost = 1,
+    pools = {["Grisgris"]=true},
+
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = true,
+    perishable_compat = false,
+
+    pos = {x=0, y= 0},
+    config = { extra = {percent = -15,  round = 0, maxround = 3, dollars = 24}},
+
+    loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.percent, center.ability.extra.round,center.ability.extra.maxround, center.ability.extra.dollars}}
+	end,
+
+    add_to_deck = function(self, card, from_debuff)
+    G.GAME.discount_percent = card.ability.extra.percent
+                for _, v in pairs(G.I.CARD) do
+                    if v.set_cost then v:set_cost() end
+                end        
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+G.GAME.discount_percent = -card.ability.extra.percent
+                for _, v in pairs(G.I.CARD) do
+                    if v.set_cost then v:set_cost() end
+                end        
+    end,
+    calculate = function(self, card, context)
+        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+            card.ability.extra.round = card.ability.extra.round + 1
+            if card.ability.extra.round >= card.ability.extra.maxround then 
+            ease_dollars(24)
             card:start_dissolve({G.C.RED})
             card = nil 
             return {    
