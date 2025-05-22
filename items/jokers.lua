@@ -671,5 +671,85 @@ SMODS.Joker{
         end
     end
 }
+--Jae-Yong
+SMODS.Atlas{
+    key = 'jae_yong',
+    path = 'bruce.png',
+    px = 71,
+    py = 95,
+}
+--SMODS.Sound { key = "music_jae_speed", path = "skateboard_menu.ogg", sync = { ['music1'] = true, ['music2'] = true, ['music3'] = true, ['music4'] = true, ['music5'] = true, , pitch = 1, vol = 0.5, select_music_track = function(self, card) return next(SMODS.find_card("jae_yong", true)) end, } }
+--SMODS.Sound { key = "music_jae_heal", path = "skateboard_menu.ogg", sync = { ['music1'] = true, ['music2'] = true, ['music3'] = true, ['music4'] = true, ['music5'] = true, , pitch = 1, vol = 0.5, select_music_track = function(self, card) return next(SMODS.find_card("jae_yong", true)) end, } }
+SMODS.Sound({ key = "party_mode", path = "jae_speed_ulti_vo_06.ogg",})
+SMODS.Sound({ key = "party_mode_effect", path = "jae_healing_mode_01.ogg", vol = 0.5})
+SMODS.Sound({ key = "work_mode", path = "jae_speed_ulti_vo_04.ogg",})
+SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg",vol = 0.5})
+
+SMODS.Joker{
+    key = 'jae_yong',
+    loc_txt= {
+        name = 'Jae-Yong',
+        text = {"Switch between 2 modes every round",
+                "Work mode : {X:chips,C:white,E:2}X#1#{} Chips",
+                "Party mode : {X:mult,C:white,E:1}X#2#{} Mult",
+                "Currently {C:attention}#4#{} mode",
+                --"Switch = #3#",
+                },
+        },
+    atlas = 'jae_yong',
+    rarity = "brawl_mythic",
+    cost = 1,
+    pools = {["Brawler"]=true},
+
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
+
+    pos = {x=0, y= 0},
+    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, work = "Work", party = "Party", mode ="there is no" }},
+
+    loc_vars = function(self, info_queue, center)
+		return { vars = { center.ability.extra.xchip, center.ability.extra.xmult, center.ability.extra.switch, center.ability.extra.mode, center.ability.extra.work, center.ability.extra.party }  }
+	end,
+
+    calculate = function(self, card, context)
+    if context.setting_blind and not context.blueprint then
+        if card.ability.extra.switch == 0 then
+            card.ability.extra.switch = card.ability.extra.switch + 1
+            card.ability.extra.mode = card.ability.extra.work
+            return {
+                play_sound("brawl_work_mode"),
+                play_sound("brawl_work_mode_effect"),
+                message = "Show me some energy !",
+                G.C.MULT,
+                message_card = card,
+            }
+        elseif card.ability.extra.switch == 1 then
+            card.ability.extra.switch = card.ability.extra.switch - 1
+            card.ability.extra.mode = card.ability.extra.party
+            return {
+                play_sound("brawl_party_mode"),
+                play_sound("brawl_party_mode_effect"),
+                message = "Party time !",
+                G.C.CHIPS,
+                message_card = card,
+            }
+        end
+    end
+    if context.joker_main then
+        if card.ability.extra.switch == 0 then
+            return {
+                xchips = card.ability.extra.xchip,
+            } 
+        elseif  card.ability.extra.switch == 1 then
+            return {
+                xmult = card.ability.extra.xmult,
+            } 
+        end
+    end
+end
+}
 ----------------------------------------------------------
 ----------- MOD CODE END ----------------------------------
