@@ -1,14 +1,4 @@
---- STEAMODDED HEADER
---- MOD_NAME: Brawlatro
---- MOD_ID: Brawlatro
---- MOD_AUTHOR: [Gashuilmo]
---- MOD_DESCRIPTION: There's a brawler in my deck !
---- PREFIX: brawl
---- MOD_VERSION: 1.0.0
---- MOD_SITE: twitter.com/@gashuilmo
-
-----------------------------------------------------------
------------ MOD CODE -------------------------------------
+--------Start of code
 SMODS.current_mod.optional_features = function()
     return {
         retrigger_card = true,
@@ -674,7 +664,7 @@ SMODS.Joker{
 --Jae-Yong
 SMODS.Atlas{
     key = 'jae_yong',
-    path = 'bruce.png',
+    path = 'jaeyong.png',
     px = 71,
     py = 95,
 }
@@ -751,5 +741,4 @@ SMODS.Joker{
     end
 end
 }
-----------------------------------------------------------
------------ MOD CODE END ----------------------------------
+--------End of code
