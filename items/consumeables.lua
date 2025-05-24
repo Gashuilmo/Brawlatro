@@ -41,3 +41,30 @@ can_use = function(self, card)
         end
 	end,
 })
+
+--Mandy
+SMODS.Atlas{
+    key = 'mandycrush',
+    path = 'mandy.png',
+    px = 71,
+    py = 95,
+}
+--SMODS.Sound({key = "summoncurse", path = "juju_summon_01.ogg"})
+SMODS.Consumable({
+    key = "mandycrush",
+    set = "Tarot",
+    object_type = "Consumable",
+    name = "mandycrush",
+    loc_txt = {
+        name = "Sugar Beam",
+        text={
+        "Destroy 3 random {C:attention}Cards{} in your hand",
+        },
+    },
+	pos = {x=0, y= 0},
+	order = 99,
+	atlas = "mandycrush",
+    unlocked = true,
+    discovered = true,
+    cost = 4,
+})

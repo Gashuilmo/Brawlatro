@@ -4,36 +4,44 @@ SMODS.Atlas{
     px = 148,
     py = 125,
 }
-SMODS.Booster({
-    object_type = "Booster",
-    key = "brawlatro_megabox",
-    kind = "Brawler",   
-    atlas = "mega_box",
+
+SMODS.Booster{
+    key = 'booster_megabox',
+    group_key = "k_brawlatro_booster_group",
+    atlas = 'mega_box', 
     pos = { x = 0, y = 0 },
-    config = { extra = 4, choose = 1 },
-    cost = 10,
-    order = 3,
-    weight = 9,
+    discovered = true,
+    loc_txt= {
+        name = 'MEGA BOX',
+        text = { "Pick {C:attention}#1#{} Brawler out of",
+                "{C:attention}#2#{} Brawler jokers!", },
+        group_name = {"Pick somethin', will ya?"},
+    },
     
-    create_card = function(self, card)
-        return create_card("Brawler", G.pack_cards, nil, nil, true,  true, nil, "brawlatro_megabox")
-    end,
-    
-    ease_background_colour = function(self)
-        ease_colour(G.C.DYN_UI.MAIN, G.C.BLUE)
-        ease_background_colour({ new_colour = G.C.SET.PURPLE, special_colour = G.C.BLACK, contrast = 2 })
-    end,
+    draw_hand = false,
+    config = {
+        extra = 3,
+        choose = 1, 
+    },
 
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.config.center.config.choose, card.ability.extra } }
+        return { vars = { card.ability.choose, card.ability.extra } }
     end,
-     
-    loc_txt = {
-        name = "Mega Box",
-        text = {
-            "Choose {C:attention}#1#{} of",
-            "up to {C:attention}#2# Brawlers{}",
-        },
-    },
-    group_key = "BrawlatroMegaBox",
-})
+
+    weight = 10,
+    cost = 5,
+    kind = "BrawlPack",
+    
+    create_card = function(self, card, i)
+        ease_background_colour(HEX("ffac00"))
+        return SMODS.create_card({
+            set = "Brawler",
+            area = G.pack_cards,
+            skip_materialize = true,
+            soulable = true,
+        })
+    end,
+    select_card = 'jokers',
+
+    in_pool = function() return true end
+}

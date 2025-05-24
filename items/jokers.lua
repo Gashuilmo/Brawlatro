@@ -208,19 +208,19 @@ SMODS.Joker{
     eternal_compat = false,
     perishable_compat = false,
     pos = {x=0, y= 0},
-    config = { extra = { xmult = 2, increase = 2}},
+    config = { extra = { surgemult = 2, increase = 2}},
     loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.xmult, center.ability.extra.increase } }
+		return { vars = { center.ability.extra.surgemult, center.ability.extra.increase } }
 	end,
 
     calculate = function(self, card, context)
         if context.joker_main then
 			return {
-				xmult = card.ability.extra.xmult,
+				xmult = card.ability.extra.surgemult,
 			}
         end
         if context.end_of_round and context.game_over == false and context.main_eval and G.GAME.blind.boss then
-            card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.increase
+            card.ability.extra.surgemult = card.ability.extra.surgemult + card.ability.extra.increase
             return {
                     message = "Upgrade !",
                     message_card = card,

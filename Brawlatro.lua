@@ -2,8 +2,6 @@ if not Brawlatro then
 	Brawlatro = {}
 end
 
-
-
 local mod_path = "" .. SMODS.current_mod.path
 Brawlatro.path = mod_path
 Brawlatro_config = SMODS.current_mod.config
@@ -13,17 +11,6 @@ SMODS.current_mod.optional_features = {
 	post_trigger = true,
 }
 
-
--- Brawlatro joker pool
---SMODS.ObjectType({
---	key = "Brawler",
---	default = "j_reserved_parking",
---	cards = {},
---	inject = function(self)
---		SMODS.ObjectType.inject(self)
---		-- insert base game food jokers
---	end,
---})
 SMODS.ObjectType({
 	key = "Grisgris",
 	default = "grisgris",
