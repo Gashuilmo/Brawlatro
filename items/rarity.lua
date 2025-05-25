@@ -90,7 +90,7 @@ SMODS.Rarity{
     key="ultra_legendary",
     loc_txt = {name ="Ultra Legendary"},
     badge_colour = G.C.EDITION,
-    default_weight = 0.05        501, 
+    default_weight = 0.05, 
     pools = {
         ["Joker"] = true,
     }

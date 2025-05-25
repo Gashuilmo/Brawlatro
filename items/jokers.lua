@@ -548,7 +548,7 @@ SMODS.Atlas{
 SMODS.Joker{
     key = 'shaman',
     loc_txt= {
-        name = 'Nita',
+        name = 'Call Of The Wild',
         text = {"Every {C:attention}#3#{} scoring card",
                 "summon one {C:brown}Bruce{}" ,
                 "{C:inactive}Currently #4# scoring card left{}",
@@ -634,7 +634,7 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { jokerslots = 1, round = 0, maxround = 3}},
+    config = { extra = { jokerslots = 2, round = 0, maxround = 3}},
 
     loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.jokerslots, center.ability.extra.round, center.ability.extra.maxround }  }
@@ -678,7 +678,7 @@ SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg",vol = 0.5
 SMODS.Joker{
     key = 'jae_yong',
     loc_txt= {
-        name = 'Jae-Yong',
+        name = 'Mix It Up !',
         text = {"Switch between 2 modes every round",
                 "Work mode : {X:chips,C:white,E:2}X#1#{} Chips",
                 "Party mode : {X:mult,C:white,E:1}X#2#{} Mult",
