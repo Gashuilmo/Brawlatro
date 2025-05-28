@@ -1,27 +1,20 @@
 --Juju
 SMODS.Atlas{
-    key = 'jujucurse',
+    key = 'brawl_jujucurse',
     path = 'curse.png',
     px = 71,
     py = 95,
 }
 SMODS.Sound({key = "summoncurse", path = "juju_summon_01.ogg"})
 SMODS.Consumable({
-    key = "brawlatro_jujucurse",
-    set = "Tarot",
+    key = "brawl_jujucurse",
+    set = "Gear",
     object_type = "Consumable",
     name = "jujucurse",
-    loc_txt = {
-        name = "Curse Of Juju",
-        text={
-        "The curse of Juju may be rewarding ...",
-        "Or not !",
-        "{C:inactive}(Must have room to spawn Gris-Gris){}",
-        },
-    },
 	pos = {x=0, y= 0},
 	order = 99,
 	atlas = "jujucurse",
+    --pools = {["Tarot"]=true},
     unlocked = true,
     discovered = true,
     cost = 4,
@@ -44,27 +37,22 @@ can_use = function(self, card)
 
 --Mandy
 SMODS.Atlas{
-    key = 'mandycrush',
+    key = 'brawl_mandycrush',
     path = 'mandy.png',
     px = 71,
     py = 95,
 }
 SMODS.Consumable({
     key = "mandycrush",
-    set = "Tarot",
+    set = "Gear",
     object_type = "Consumable",
     name = "mandycrush",
-    loc_txt = {
-        name = "Sugar Crush",
-        text={
-        "Destroy 3 random {C:attention}Cards{} in your hand",
-        },
-    },
 	pos = {x=0, y= 0},
 	order = 99,
 	atlas = "mandycrush",
     unlocked = true,
     discovered = true,
+    --pools = {["Tarot"]=true},
     cost = 4,
     config = { extra = { destroy = 1} },
     loc_vars = function(self, info_queue, card)

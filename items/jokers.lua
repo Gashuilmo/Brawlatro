@@ -49,14 +49,7 @@ SMODS.Atlas{
 SMODS.Sound({key = "sushiroll", path = "kenji_lead_vo_01.ogg",})
 
 SMODS.Joker{
-    key = 'kenjisushi',
-    loc_txt= {
-        name = 'Fushi',
-        text = { "Every {C:blue}consumable{} used",
-               "add {X:chips,C:white}+#2#{} Chips.",
-                "{C:inactive}Currently {C:blue}+#1# {C:inactive}Chips",
-                },
-        },
+    key = 'buffet',
     atlas = 'kenjisushi',
     rarity = "brawl_legendary_brawler",
     cost = 1,
@@ -100,20 +93,13 @@ SMODS.Sound({key = "chesterlol", path = "chester_ulti_vo_08.ogg",})
 
 SMODS.Joker{
     key = 'chesterjoker',
-    loc_txt= {
-        name = 'What Will It Be',
-        text = {"Has a random chance to trigger",
-                "different effects when" ,
-                "playing cards.",
-                --+ X10Mult
-                --+20Chips
-                --+5 Dollar
-                --Minus X10Mult
-                --Minus 20chips
-                --Minus 5dollar
-                --Nothing
-                },
-        },
+    --+ X10Mult
+    --+20Chips
+    --+5 Dollar
+    --Minus X10Mult
+    --Minus 20chips
+    --Minus 5dollar
+    --Nothing
     atlas = 'chesterjoker',
     rarity = "brawl_legendary_brawler",
     cost = 1,
@@ -188,15 +174,6 @@ SMODS.Sound({key = "surged", path = "surge_ulti_01.ogg"})
 
 SMODS.Joker{
     key = 'surged',
-    loc_txt= {
-        name = 'Upgrade Module',
-        text = { 
-                "Upgrade {X:mult,C:white}X#2#{} Mult",
-                "for every {C:attention}Boss Blind{}",
-                "defeated this run.",
-                "{C:inactive}Currently {C:red}x#1# {C:inactive}Mult",
-                },
-        },
     atlas = 'surged',
     rarity = "brawl_legendary_brawler",
     cost = 1,
@@ -241,14 +218,6 @@ SMODS.Atlas{
 SMODS.Sound({key = "lobster", path = "clancy_ulti_vo_09.ogg", vol =0.1})
 SMODS.Joker{
     key = 'commando',
-    loc_txt= {
-        name = 'Commando',
-        text = { 
-                "This Joker gains {C:red}+#2#{} Mult",
-                "when a card is scored.",
-                "{C:inactive}Currently {C:red}+#1# {C:inactive}Mult",
-                },
-        },
     atlas = 'commando',
     rarity = "brawl_mythic",
     cost = 1,
@@ -296,16 +265,6 @@ SMODS.Atlas{
 --SMODS.Sound({key = "", path = "",})
 SMODS.Joker{
     key = 'cheater',
-    loc_txt= {
-        name = 'Rule Bender',
-        text = { 
-                "Clearly you haven't read section 426",
-                "subsection 98 division 4 under invisible ink.",
-                "{C:dark_edition}+1{} {C:inactive}Hand size, Hands, Discards, Joker slot {}",
-                "{C:inactive}and consumable slot{}",
-                --"{C:inactive}and Shop slots{}",
-                },
-        },
     atlas = 'cheater',
     rarity = "brawl_ultra_legendary",
     cost = 1,
@@ -318,7 +277,7 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = {  jokerslots = 1,h_size = 1, d_size =1, hand =1, slot = 1, highlighted = 1}},
+    config = { extra = {  jokerslots = 2, h_size = 1, d_size =1, hand =1, slot = 1, highlighted = 1}},
 
     loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.jokerslots, center.ability.extra.h_size, center.ability.extra.d_size, center.ability.extra.hand,  center.ability.extra.hand,center.ability.extra.highlighted  }  }
@@ -364,14 +323,6 @@ SMODS.Atlas{
 SMODS.Sound({key = "defeatcurse", path = "bs_juju_getshurt_002_04.ogg"})
 SMODS.Joker{
     key = 'grisgris',
-    loc_txt= {
-        name = 'Gris-Gris',
-        text = { 
-                "No Score ?",
-		        "Get {C:money}20${} after defeating the curse",
-                "Debuff last {C:attention}#3#{}/3 more rounds",
-                },
-        },
     atlas = 'grisgris',
     rarity = "brawl_cursed",
     cost = 1,
@@ -432,14 +383,6 @@ SMODS.Sound {
 
 SMODS.Joker{
     key = 'grisgris2',
-    loc_txt= {
-        name = 'Gris-Gris2',
-        text = { 
-                "Baby Shark Doo Doo",
-                "Get {C:money}20${} after defeating the curse",
-                "Debuff last {C:attention}#2#{}/3 more rounds",
-                },
-        },
     atlas = 'grisgris',
     rarity = "brawl_cursed",
     cost = 1,
@@ -482,14 +425,6 @@ SMODS.Joker{
 
 SMODS.Joker{
     key = 'grisgris3',
-    loc_txt= {
-        name = 'Gris-Gris3',
-        text = { 
-                "2008 is back in the menu",
-                "Get {C:money}20${} after defeating the curse",
-                "Debuff last {C:attention}#2#{}/3 more rounds",
-                },
-        },
     atlas = 'grisgris',
     rarity = "brawl_cursed",
     cost = 1,
@@ -547,15 +482,6 @@ SMODS.Atlas{
 }
 SMODS.Joker{
     key = 'shaman',
-    loc_txt= {
-        name = 'Call Of The Wild',
-        text = {"Every {C:attention}#3#{} scoring card",
-                "summon one {C:brown}Bruce{}" ,
-                "{C:inactive}Currently #4# scoring card left{}",
-                "Gain {X:mult,C:white}X#1#{} Mult per Bruce active{}",
-                "{C:inactive}Currently {X:mult,C:white}X#2#{} Mult {}",
-                },
-        },
     atlas = 'shaman',
     rarity = "brawl_rare",
     cost = 1,
@@ -616,12 +542,6 @@ SMODS.Atlas{
 
 SMODS.Joker{
     key = 'bruce',
-    loc_txt= {
-        name = 'Bruce',
-        text = {"I'm a bear",
-        "I have {C:attention}#2#{}/3 round left to live",
-                },
-        },
     atlas = 'bruce',
     rarity = "brawl_bruce",
     cost = 1,
@@ -634,7 +554,7 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { jokerslots = 2, round = 0, maxround = 3}},
+    config = { extra = { jokerslots = 1, round = 0, maxround = 3}},
 
     loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.jokerslots, center.ability.extra.round, center.ability.extra.maxround }  }
@@ -677,15 +597,6 @@ SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg",vol = 0.5
 
 SMODS.Joker{
     key = 'jae_yong',
-    loc_txt= {
-        name = 'Mix It Up !',
-        text = {"Switch between 2 modes every round",
-                "Work mode : {X:chips,C:white,E:2}X#1#{} Chips",
-                "Party mode : {X:mult,C:white,E:1}X#2#{} Mult",
-                "Currently {C:attention}#4#{} mode",
-                --"Switch = #3#",
-                },
-        },
     atlas = 'jae_yong',
     rarity = "brawl_mythic",
     cost = 1,
@@ -698,7 +609,7 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, work = "Work", party = "Party", mode ="there is no" }},
+    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, work = localize("work") , party = "Party", mode ="there is no" }},
 
     loc_vars = function(self, info_queue, center)
 		return { vars = { center.ability.extra.xchip, center.ability.extra.xmult, center.ability.extra.switch, center.ability.extra.mode, center.ability.extra.work, center.ability.extra.party }  }
@@ -741,4 +652,32 @@ SMODS.Joker{
     end
 end
 }
+--Belle
+SMODS.Atlas{
+    key = 'brawlstars',
+    path = 'brawlstars.png',
+    px = 71,
+    py = 95,
+}
+
+SMODS.Joker{
+    key = 'bounty',
+    atlas = 'brawlstars',
+    pos = { x = 0, y = 0 },
+    rarity = 1,
+    cost = 1,
+    pools = {["Brawler"]= true },
+    blueprint_compat=false,
+    eternal_compat=true,
+    unlocked = true,
+    discovered = true,
+
+    config = { extra = { xmult = 2 } },
+    loc_vars = function(self, info_queue, card)
+        local bounty_card = G.GAME.current_round.brawl_bounty_card or { rank = 'Ace', suit = 'Spades' }
+        return { vars = { card.ability.extra.xmult, localize(bounty_card.rank, 'ranks'), localize(bounty_card.suit, 'suits_plural'), colours = { G.C.SUITS[bounty_card.suit] } } }
+    end,
+
+}
+
 --------End of code

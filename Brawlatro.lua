@@ -39,7 +39,6 @@ SMODS.ObjectType({
 	end,
 })
 
-
 --Brawlatro.nuuhstream = love.graphics.newVideoStream( Brawlatro.path .. "nuuh.ogv" )
 --Brawlatro.nuuh = love.graphics.newVideo( Brawlatro.nuuhstream )
 

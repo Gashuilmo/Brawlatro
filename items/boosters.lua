@@ -15,7 +15,7 @@ SMODS.Booster{
         name = 'MEGA BOX',
         text = { "Pick {C:attention}#1#{} Brawler out of",
                 "{C:attention}#2#{} Brawler jokers!", },
-        group_name = {"Pick somethin', will ya?"},
+        group_name = {"MegaBox"},
     },
     
     draw_hand = false,
