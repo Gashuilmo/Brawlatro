@@ -6,15 +6,6 @@ SMODS.Atlas{
 }
 SMODS.Seal{
     key = 'gadget',
-    --loc_txt= {
-    --    label = "Gadget",
-    --    name = "Gadget",
-    --    text = { 
-    --            "Upon scoring, create a random",
-    --            "Brawl consumable and",
-    --            "destroys this card"
-    --            },
-    --    },
     atlas = 'gadgetseal',
     pos = {x=0,y=0},
     badge_colour = HEX('0eff0e'),
@@ -28,14 +19,14 @@ SMODS.Seal{
                 trigger = 'before',
                 delay = 0.0,
                 func = function()
-                    SMODS.add_card({ set = 'gear' })
+                    SMODS.add_card({ set = 'Gear' })
                     G.GAME.consumeable_buffer = 0
                     return true
                 end
             }))
-            return { message = localize('k_plus_tarot'), colour = G.C.PURPLE }
+            return { message = localize('k_plus_gear'), colour = HEX('3bdcff') }
         end
-        if context.destroy_card and context.main_scoring and context.cardarea == G.play then
+        if context.destroy_card and context.cardarea == G.play and context.destroy_card == card then
              G.E_MANAGER:add_event(Event({
                 trigger = 'after',
                 delay = 0.0,
@@ -45,7 +36,8 @@ SMODS.Seal{
                 return true
             end
             }))
-            return { 
+            return {
+                remove = true,
                 message_card = card,
                 message = "Activated", colour = G.C.GREEN 
             }

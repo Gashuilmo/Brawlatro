@@ -4,7 +4,7 @@ return {
             j_brawl_buffet = {
                 name = "Buffet",
                 text = { "Pour chaque {C:blue}consumable{} utilisé",
-               "ce joker gagne {X:chips,C:white}+#2#{} Jetons.",
+               "ce joker gagne {X:chips,C:white}+#2#{} Jetons",
                 "{C:inactive}Maintenant {C:blue}+#1# {C:inactive}Jetons",
                 },
             },
@@ -18,35 +18,34 @@ return {
             j_brawl_surged = {
                 name = "Module D'amélioration",
                 text = { 
-                "Améliore {X:mult,C:white}X#2#{} Mult",
-                "pour chaque {C:attention}Boss Blinde{}",
-                "battue durant cette partie.",
-                "{C:inactive}Actuellement {C:red}x#1# {C:inactive}Mult",
+                "Améliore {X:mult,C:white}X#2#{} Multi",
+                "pour chaque {C:attention}Boss Blinde{} battue",
+                "{C:inactive}Actuellement {C:red}x#1# {C:inactive}Multi",
                 },
             },
             j_brawl_commando = {
                 name = "Commando",
                 text = { 
-                "Ce Joker gagne {C:red}+#2#{} Mult",
-                "lorsqu'une carte jouée marque des points.",
-                "{C:inactive}Actuellement {C:red}+#1# {C:inactive}Mult",
+                "Ce Joker gagne {C:red}+#2#{} Multi",
+                "lorsqu'une carte jouée marque des points",
+                "{C:inactive}Actuellement {C:red}+#1# {C:inactive}Multi",
                 },
             },
             j_brawl_cheater = {
                 name = "Tricheur",
                 text = { 
                 "Clairement tu n'as pas lu la section 426",
-                "sous-section 98 division 4 sous de l'encre invisible.",
+                "sous-section 98 division 4 sous de l'encre invisible",
                 "{C:dark_edition}+1{} {C:inactive}Taille de main, Mains, Défausses, Emplacement de Joker, {}",
-                "{C:inactive}Emplacement de consommable et Emplacement de carte dans le magasin.{}",
+                "{C:inactive}Emplacement de consommable et Emplacements dans le magasin{}",
                 },            
             },
             j_brawl_grisgris = {
                 name = "Gris-Gris",
                 text = { 
-                "Pas de points ? ?",
+                "Pas de points ?",
 		        "Récupère {C:money}20${} après avoir vaincu la malédiction",
-                "Il reste {C:attention}#3#{}/3 manche(s) avant de la vaincre.",
+                "Il reste {C:attention}#3#{}/3 manche(s) avant de la vaincre",
                 },
             },
             j_brawl_grisgris2 = {
@@ -54,7 +53,7 @@ return {
                 text = { 
                 "Baby Shark Doo Doo",
                 "Récupère {C:money}20${} après avoir vaincu la malédiction",
-                "Il reste {C:attention}#3#{}/3 manche(s) avant de la vaincre.",
+                "Il reste {C:attention}#3#{}/3 manche(s) avant de la vaincre",
                 },
             },
             j_brawl_grisgris3 = {
@@ -62,16 +61,16 @@ return {
                 text = { 
                 "Peu original mais ça reste travaillé dessus ",
                 "Récupère {C:money}20${} après avoir vaincu la malédiction",
-                "Il reste {C:attention}#3#{}/3 manche(s) avant de la vaincre.",
+                "Il reste {C:attention}#3#{}/3 manche(s) avant de la vaincre",
                 },
             },
             j_brawl_shaman = {
                 name = "Appel De La Nature",
                 text = {"Toutes les {C:attention}#3#{} cartes marquant des points",
-                "fait apparaître un Bruce." ,
-                "{C:inactive}Actuellement #4# cartes marquantes restantes.{}",
-                "Gagne aussi {X:mult,C:white}X#1#{} Mult pour chaque Bruce actif.{}",
-                "{C:inactive}Actuellement {X:mult,C:white}X#2#{} Mult {}",
+                "fait apparaître un Bruce" ,
+                "{C:inactive}Actuellement #4# cartes marquantes restantes{}",
+                "Gagne aussi {X:mult,C:white}X#1#{} Multi pour chaque Bruce actif{}",
+                "{C:inactive}Actuellement {X:mult,C:white}X#2#{} Multi {}",
                 },
             },
             j_brawl_bruce = {
@@ -83,73 +82,104 @@ return {
             j_brawl_jae_yong = {
                 name = "Mix It Up !",
                 text = {"Change enntre 2 modes à chaque manche",
-                "Work mode : {X:chips,C:white,E:2}X#1#{} Chips",
-                "Party mode : {X:mult,C:white,E:1}X#2#{} Mult",
+                "Mode Travail : {X:chips,C:white,E:2}X#1#{} Chips",
+                "Mode fête : {X:mult,C:white,E:1}X#2#{} Multi",
                 --"Currently {C:attention}#4#{} mode",
                 },
             },
-        },
-    Other = {
-			brawl_gadget_seal = {
-                name = "Gadget Seal",
+            j_brawl_activator = {
+                name = "Gadget Gadget Gadget !",
                 text = {
-                    "Create a {C:attention}Brawl{} {C:blue}consumable{}",
-                    "when scoring this card",
-                    "Upon scoring also {C:red}destroy{} this card"
+                    "Pour chaque carte marquantes ",
+                    "avec un {C:green}Sceau Vert{}",
+                    "Ce joker gagne {X:mult,C:white}X#2#{} Multi",
+                    "{C:inactive}Actuellement {X:mult,C:white}X#1#{} Multi",
+                },
+            },
+            j_brawl_colette = {
+                name = "TON PLUS GRAND FAN",
+                text = {
+                    "Pour chaque Joker {C:attention}Brawler{}",
+                    "dans votre deck, Ce Joker ajoute {X:mult,C:white}X#2#{} au Multi",
+                    "{C:inactive}Actuellement {X:mult,C:white}X#1#{} {C:inactive}Multi{}",
                 }
             },
         },
     Other = {
 			brawl_gadget_seal = {
-                name = "Gadget Seal",
+                name = "Sceau Gadget",
                 text = {
-                    "Create a {C:attention}Brawl{} {C:blue}consumable{}",
-                    "when scoring this card",
-                    "Upon scoring also {C:red}destroy{} this card"
+                    "Crée un {C:blue}consommable{} {C:attention}Brawl{}",
+                    "lorsque la carte marque des points",
+                    "En jouant cette carte elle se ",
+                    "{C:red}détruit{} en marquant des points",
                 }
+            },
+            brawl_tooltip_gadget ={
+                name = "Sceau Gadget",
+                text = {
+                    "Crée un {C:blue}consommable{} {C:attention}Brawl{}",
+                    "lorsque la carte marque des points",
+                    "En jouant cette carte elle se ",
+                    "{C:red}détruit{} en marquant des points",
+                }
+            },
+            brawl_tooltip_brawler ={
+                name = "Brawler Joker",
+                text = {
+                    "Joker à thème autour d'un",
+                    "Brawler provenant de {C:money}Brawl Stars{}"
+                },
             },
         },
         Voucher = {
             v_brawl_brawlpass = {
                 name = "Brawl Pass",
-                text = { "Gives {C:money}$#1#{} per hand at the end of every round."},            
+                text = { "Gives {C:money}$#1#{} per hand at the end of every round"},            
             },
             v_brawl_brawlpassplus ={
                 name = "Brawl Pass Plus",
-                text = { "Gives {C:money}$#1#{} per discard at the end of every round.",
+                text = { "Gives {C:money}$#1#{} per discard at the end of every round",
                             "Stack with {C:attention}Brawl Pass{}" 
                 }
             },
         },
-    Gear = {
+    Spectral = {
+        c_brawl_gadgetspectral = {
+                name = "What's In The Cards",
+                text={
+                "Ajoute un {C:green}Sceau Vert{}",
+                "à {C:attention}1{} carte selectionné",
+                "dans votre main",
+                },
+            },
+        },
+    Tarot = {
             c_brawl_jujucurse = {
                 name = "Curse Of Juju",
                 text={
-                "The curse of Juju may be rewarding ...",
-                "Or not !",
-                "{C:inactive}(Must have room to spawn Gris-Gris){}",
+                "La malédiction de Juju vous récompensera ...",
+                "Ou pas !",
+                "{C:inactive}Dois avoir de la place{}",
+                "{C:inactive}pour faire apparaitre la malédiction{}",
                 },
             },
+        },     
+    Gear = {
             c_brawl_mandycrush = {
                 name = "Sugar Crush",
                 text={
-                "Destroy 3 random {C:attention}Cards{} in your hand",
-                },
-            },
-
-            c_brawl_taracard = {
-                name = "What's In The Cards",
-                text={
-                "Create a {C:green}Gadget{} seal on 1 selected card",
+                "Détruit {C:attention}3{} {C:attention}Cards{} ",
+                "aléatoire dans votre main",
                 },
             },
         },
     },
     misc = {
         dictionary = {
-            k_work_ex = "Travail",
-            b_powerup_cards = "Gear Cards",
-            k_powerup = "Gear",
+            b_gear_cards = "Cartes Equipement",
+            k_gear = "Equipement",
+            k_plus_gear = "+1 Equipement"
         },
         labels = {
             brawl_gadget_seal = "Gadget",

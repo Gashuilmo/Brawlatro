@@ -98,7 +98,7 @@ SMODS.Rarity{
 
 SMODS.ConsumableType {
     key = "Gear",
-    primary_colour = HEX("ffffff"),
+    primary_colour = HEX("1ab1ff"),
     secondary_colour = HEX("3bdcff"),
     loc_text = {
         name = "Gear",
@@ -110,6 +110,6 @@ SMODS.ConsumableType {
 },
     collection_row = {6, 6},
     shop_rate = 2,
-    default = "c_death",
+    default = "c_brawl_mandycrush",
     no_collection = false,
 }

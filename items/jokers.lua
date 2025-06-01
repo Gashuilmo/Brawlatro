@@ -8,36 +8,6 @@ SMODS.current_mod.optional_features = function()
     }
 end, 
 
---Browl
---SMODS.Atlas{
---    key = 'brawlstars',
---    path = 'brawlstars.png',
---    px = 71,
---    py = 95,
---}
-
---SMODS.Joker{
---    key = 'brawlstars',
---    loc_txt = {
---        name = 'Brawl Stars',
---        text = {
---          "Does nothing because i'm losing it",
---        }
---        --Will be change to xmult per brawl card in deck
---    },
---    atlas = 'brawlstars',
---    pos = { x = 0, y = 0 },
---    rarity = 1,
---    cost = 1,
---    pools = {["Brawlatro"]= true },
---    blueprint_compat=true,
---    eternal_compat=true,
---    unlocked = true,
---    discovered = true,
---    
---    pos = {x=0, y= 0},
---}
-
 --Kenji
 SMODS.Atlas{
     key = 'kenjisushi',
@@ -45,14 +15,12 @@ SMODS.Atlas{
     px = 71,
     py = 95,
 }
-
 SMODS.Sound({key = "sushiroll", path = "kenji_lead_vo_01.ogg",})
-
 SMODS.Joker{
     key = 'buffet',
     atlas = 'kenjisushi',
-    rarity = "brawl_legendary_brawler",
-    cost = 1,
+    rarity = 1,
+    cost = 5,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -63,8 +31,8 @@ SMODS.Joker{
 
     pos = {x=0, y= 0},
     config = { extra = {chips = 5, additional = 5}},
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.chips, center.ability.extra.additional } }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.chips, card.ability.extra.additional } }
 	end,
 
     calculate = function(self, card, context)
@@ -90,7 +58,6 @@ SMODS.Atlas{
 }
 SMODS.Sound({key = "startgambling", path = "chester_ulti_vo_02.ogg",})
 SMODS.Sound({key = "chesterlol", path = "chester_ulti_vo_08.ogg",})
-
 SMODS.Joker{
     key = 'chesterjoker',
     --+ X10Mult
@@ -101,8 +68,8 @@ SMODS.Joker{
     --Minus 5dollar
     --Nothing
     atlas = 'chesterjoker',
-    rarity = "brawl_legendary_brawler",
-    cost = 1,
+    rarity = 2,
+    cost = 3,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -113,8 +80,8 @@ SMODS.Joker{
 
     pos = {x=0, y= 0},
     config = { extra = {chips = 20, xmult = 3, money = 5 }}, 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.chips, center.ability.extra.xmult, center.ability.extra.money} }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.chips, card.ability.extra.xmult, card.ability.extra.money} }
 	end,
 
     calculate = function(self, card, context)
@@ -169,14 +136,12 @@ SMODS.Atlas{
     px = 71,
     py = 95,
 }
-
 SMODS.Sound({key = "surged", path = "surge_ulti_01.ogg"})
-
 SMODS.Joker{
     key = 'surged',
     atlas = 'surged',
-    rarity = "brawl_legendary_brawler",
-    cost = 1,
+    rarity = 3,
+    cost = 6,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -186,8 +151,8 @@ SMODS.Joker{
     perishable_compat = false,
     pos = {x=0, y= 0},
     config = { extra = { surgemult = 2, increase = 2}},
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.surgemult, center.ability.extra.increase } }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.surgemult, card.ability.extra.increase } }
 	end,
 
     calculate = function(self, card, context)
@@ -204,7 +169,6 @@ SMODS.Joker{
                     sound = "brawl_surged"
                 }
         end
-		
     end 
 }
 
@@ -219,8 +183,8 @@ SMODS.Sound({key = "lobster", path = "clancy_ulti_vo_09.ogg", vol =0.1})
 SMODS.Joker{
     key = 'commando',
     atlas = 'commando',
-    rarity = "brawl_mythic",
-    cost = 1,
+    rarity = 2,
+    cost = 4,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -231,8 +195,8 @@ SMODS.Joker{
 
     pos = {x=0, y= 0},
     config = { extra = { Xmult = 1, additional = 0.25}},
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.Xmult, center.ability.extra.additional } }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.Xmult, card.ability.extra.additional } }
 	end,
 
     calculate = function(self, card, context)
@@ -262,11 +226,10 @@ SMODS.Atlas{
     px = 241,
     py = 323,
 }
---SMODS.Sound({key = "", path = "",})
 SMODS.Joker{
     key = 'cheater',
     atlas = 'cheater',
-    rarity = "brawl_ultra_legendary",
+    rarity = 4,
     cost = 1,
     pools = {["Brawler"]=true},
 
@@ -279,8 +242,8 @@ SMODS.Joker{
     pos = {x=0, y= 0},
     config = { extra = {  jokerslots = 2, h_size = 1, d_size =1, hand =1, slot = 1, highlighted = 1}},
 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.jokerslots, center.ability.extra.h_size, center.ability.extra.d_size, center.ability.extra.hand,  center.ability.extra.hand,center.ability.extra.highlighted  }  }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.jokerslots, card.ability.extra.h_size, card.ability.extra.d_size, card.ability.extra.hand,  card.ability.extra.hand,card.ability.extra.highlighted  }  }
 	end,
 
      add_to_deck = function(self, card, from_debuff)
@@ -293,6 +256,8 @@ SMODS.Joker{
         G.consumeables.config.card_limit = G.consumeables.config.card_limit + card.ability.extra.slot
         G.GAME.shop.joker_max = G.GAME.shop.joker_max + card.ability.extra.slot
         G.hand.config.highlighted_limit = G.hand.config.highlighted_limit + card.ability.extra.highlighted
+        SMODS.change_booster_limit(1)
+		SMODS.change_voucher_limit(1)
     end,
     remove_from_deck = function(self, card, from_debuff)
         G.GAME.round_resets.hands = G.GAME.round_resets.hands - card.ability.extra.hand
@@ -304,6 +269,8 @@ SMODS.Joker{
         G.consumeables.config.card_limit = G.consumeables.config.card_limit - card.ability.extra.slot
         G.GAME.shop.joker_max = G.GAME.shop.joker_max - card.ability.extra.slot
         G.hand.config.highlighted_limit = G.hand.config.highlighted_limit -  card.ability.extra.highlighted
+        SMODS.change_booster_limit(-1)
+		SMODS.change_voucher_limit(-1)
     end,
 
 calculate = function(self, card, context)
@@ -337,8 +304,8 @@ SMODS.Joker{
     pos = {x=0, y= 0},
     config = { extra = {negativemult = 0.5, negativechips = 0.5, round = 0, maxround = 3}},
 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.negativemult,center.ability.extra.negativechips, center.ability.extra.round, center.ability.extra.maxround}}
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.negativemult,card.ability.extra.negativechips, card.ability.extra.round, card.ability.extra.maxround}}
 	end,
 
 calculate = function(self, card, context)
@@ -363,7 +330,6 @@ calculate = function(self, card, context)
         end
     end,
 }
-
 SMODS.Sound {
     key = "music_grisgris",
     path = "skateboard_menu.ogg",
@@ -380,7 +346,6 @@ SMODS.Sound {
         return next(SMODS.find_card("j_brawl_grisgris2", true))
     end, 
 }
-
 SMODS.Joker{
     key = 'grisgris2',
     atlas = 'grisgris',
@@ -397,8 +362,8 @@ SMODS.Joker{
     pos = {x=0, y= 0},
     config = { extra = {negativemult = 0.75, round = 0, maxround = 3, dollars = 20}},
 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.negativeXmult, center.ability.extra.round, center.ability.extra.maxround, center.ability.extra.dollars}}
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.negativeXmult, card.ability.extra.round, card.ability.extra.maxround, card.ability.extra.dollars}}
 	end,
 
     calculate = function(self, card, context)
@@ -439,8 +404,8 @@ SMODS.Joker{
     pos = {x=0, y= 0},
     config = { extra = {percent = -15,  round = 0, maxround = 3, dollars = 24}},
 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.percent, center.ability.extra.round,center.ability.extra.maxround, center.ability.extra.dollars}}
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.percent, card.ability.extra.round,card.ability.extra.maxround, card.ability.extra.dollars}}
 	end,
 
     add_to_deck = function(self, card, from_debuff)
@@ -483,8 +448,8 @@ SMODS.Atlas{
 SMODS.Joker{
     key = 'shaman',
     atlas = 'shaman',
-    rarity = "brawl_rare",
-    cost = 1,
+    rarity = 3,
+    cost = 6,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -494,14 +459,14 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = {xmult = 1, xmulttotal = 1, hands = 10, hands_remaining = 10}}, 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.xmult, center.ability.extra.xmulttotal, center.ability.extra.hands, center.ability.extra.hands_remaining} }
+    config = { extra = {xmult = 1, xmulttotal = 1, hands = 14, hands_remaining = 14}}, 
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.xmult, card.ability.extra.xmulttotal, card.ability.extra.hands, card.ability.extra.hands_remaining} }
 	end,
 calculate = function(self, card, context )
     brucecount = 1
     for i = 1, #G.jokers.cards do
-        if G.jokers.cards[i].config.center.pools and G.jokers.cards[i].config.center.pools.Bruce then
+        if G.jokers.cards[i].config.card.pools and G.jokers.cards[i].config.card.pools.Bruce then
             brucecount = brucecount + 1
         end
     end
@@ -539,7 +504,6 @@ SMODS.Atlas{
     px = 71,
     py = 95,
 }
-
 SMODS.Joker{
     key = 'bruce',
     atlas = 'bruce',
@@ -556,8 +520,8 @@ SMODS.Joker{
     pos = {x=0, y= 0},
     config = { extra = { jokerslots = 1, round = 0, maxround = 3}},
 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.jokerslots, center.ability.extra.round, center.ability.extra.maxround }  }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.jokerslots, card.ability.extra.round, card.ability.extra.maxround }  }
 	end,
 
      add_to_deck = function(self, card, from_debuff)
@@ -598,8 +562,8 @@ SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg",vol = 0.5
 SMODS.Joker{
     key = 'jae_yong',
     atlas = 'jae_yong',
-    rarity = "brawl_mythic",
-    cost = 1,
+    rarity = 2,
+    cost = 4,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -609,10 +573,10 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, work = localize("work") , party = "Party", mode ="there is no" }},
+    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, work = "Work" , party = "Party", mode ="there is no" }},
 
-    loc_vars = function(self, info_queue, center)
-		return { vars = { center.ability.extra.xchip, center.ability.extra.xmult, center.ability.extra.switch, center.ability.extra.mode, center.ability.extra.work, center.ability.extra.party }  }
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.work, card.ability.extra.party }  }
 	end,
 
     calculate = function(self, card, context)
@@ -654,30 +618,153 @@ end
 }
 --Belle
 SMODS.Atlas{
-    key = 'brawlstars',
+    key = 'activator',
     path = 'brawlstars.png',
     px = 71,
     py = 95,
 }
 
 SMODS.Joker{
-    key = 'bounty',
-    atlas = 'brawlstars',
-    pos = { x = 0, y = 0 },
-    rarity = 1,
+    key = 'activator',
+    atlas = 'activator',
+    rarity = 3,
     cost = 1,
-    pools = {["Brawler"]= true },
-    blueprint_compat=false,
-    eternal_compat=true,
+    pools = {["Brawler"]=true},
+
     unlocked = true,
     discovered = true,
+    blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
 
-    config = { extra = { xmult = 2 } },
+    config = { extra = {xmult = 2, additional = 2 }},
+    
     loc_vars = function(self, info_queue, card)
-        local bounty_card = G.GAME.current_round.brawl_bounty_card or { rank = 'Ace', suit = 'Spades' }
-        return { vars = { card.ability.extra.xmult, localize(bounty_card.rank, 'ranks'), localize(bounty_card.suit, 'suits_plural'), colours = { G.C.SUITS[bounty_card.suit] } } }
+        info_queue[#info_queue + 1] = {set = 'Other', key = "brawl_tooltip_gadget"}
+		return { vars = { card.ability.extra.xmult, card.ability.extra.additional}}
     end,
 
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play then
+            if context.other_card.seal == 'brawl_gadget' then
+                card.ability.extra.xmult = card.ability.extra.xmult + card.ability.extra.additional
+                return {message_card = card, message = "Upgraded!"}
+            end
+        end
+        if context.joker_main then
+            return {
+                xmult = card.ability.extra.xmult
+            }
+        end
+    end
 }
+
+--Colette
+SMODS.Atlas{
+    key = 'collector',
+    path = 'colette.png',
+    px = 71 ,
+    py = 95,
+}
+
+SMODS.Joker{
+    key = 'colette',
+    atlas = 'collector',
+    rarity = 3,
+    cost = 6,
+    pools = {["Brawler"] = true },
+    
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    
+    pos = {x=0, y= 0},
+    config = { extra = {xmult = 1, xmulttotal=1}},
+
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = {set = 'Other', key = "brawl_tooltip_brawler"}
+		return { vars = { card.ability.extra.xmult, card.ability.extra.xmulttotal, }  }
+	end,
+
+    calculate = function(self, card, context)
+    brawlcount = 0
+    for i = 1, #G.jokers.cards do
+        if G.jokers.cards[i].config.card.pools and G.jokers.cards[i].config.card.pools.Brawler then
+            brawlcount = brawlcount + 1
+        end
+    end
+    card.ability.extra.xmulttotal = brawlcount * card.ability.extra.xmult
+    if context.joker_main then
+        return {
+            color = G.C.RED,
+            message = "x".. card.ability.extra.xmulttotal,
+            Xmult_mod = card.ability.extra.xmulttotal
+        }
+    end
+end,
+
+    check_for_unlock = function(self, args)
+        if args.type == 'test' then --not a real type, just a joke
+            unlock_card(self)
+        end
+        unlock_card(self) --unlocks the card if it isnt unlocked
+    end,
+}
+
+--Griff
+SMODS.Atlas{
+    key = 'griff',
+    path = 'griff.png',
+    px = 71 ,
+    py = 95,
+}
+
+SMODS.Joker{
+    key = 'debt',
+    atlas = 'griff',
+    rarity = 3,
+    cost = 7,
+    pools = {["Brawler"] = true },
+    
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    
+    pos = {x=0, y= 0},
+    config = { extra = {chip = 1, moneyspent = 0, chiptottal = 0, moneyspent = 0 }},
+
+    loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.chip,card.ability.extra.chiptottal, card.ability.extra.moneyspent }  }
+	end,
+
+    calculate = function(self, card, context)
+
+        if context.brawl_ease_dollars and context.brawl_ease_dollars < 0 and not context.blueprint and not context.repetition then
+
+                card.ability.extra.moneyspent = card.ability.extra.moneyspent + (-context.brawl_ease_dollars)
+                card.ability.extra.chiptottal = card.ability.extra.chiptottal + (-context.brawl_ease_dollars * 2)
+            end
+        
+        if context.joker_main then
+                return {
+                    chips = card.ability.extra.chiptottal,
+                    message_card = card,
+                }
+            end
+    end
+}
+--How to count the money decreeasing
+local base_ease_dollars = ease_dollars
+function ease_dollars(mod, x)
+    base_ease_dollars(mod, x)
+
+    SMODS.calculate_context({brawl_ease_dollars = mod})
+end
+--Leaving it here cuz why not
+
 
 --------End of code

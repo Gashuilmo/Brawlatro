@@ -1,17 +1,23 @@
+SMODS.Atlas{
+    key = 'gadgetspectral',
+    path = 'gadgetspectral.png',
+    px = 63,
+    py = 93,
+}
 SMODS.Consumable {
-    key = "taracard",
-    set = "Gear",
+    key = "gadgetspectral",
+    set = "Spectral",
     object_type = "Consumable",
-    name = "taracard",
+    name = "gadgetspectral",
 	pos = {x=0, y= 0},
 	order = 99,
-	atlas = "jujucurse",
+	atlas = "gadgetspectral",
     --pools = {["Spectral"]=true},
     unlocked = true,
     discovered = true,
     cost = 4,
 
-    config = { extra = { seal = 'brawl_gadget_seal' }, max_highlighted = 1 },
+    config = { extra = { seal = 'brawl_gadget' }, max_highlighted = 1 },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_SEALS[card.ability.extra.seal]
         return { vars = { card.ability.max_highlighted } }

@@ -8,7 +8,7 @@ SMODS.Atlas{
 SMODS.Sound({key = "summoncurse", path = "juju_summon_01.ogg"})
 SMODS.Consumable({
     key = "brawl_jujucurse",
-    set = "Gear",
+    set = "Tarot",
     object_type = "Consumable",
     name = "jujucurse",
 	pos = {x=0, y= 0},
