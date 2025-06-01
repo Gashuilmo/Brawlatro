@@ -44,7 +44,9 @@ SMODS.Joker{
         end
         if context.using_consumeable then
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.additional
-            return { message = "Sushi Time!", sound = "brawl_sushiroll", }
+            return { message = "Sushi Time!", 
+            --sound = "brawl_sushiroll", 
+            }
         end
     end
 }
@@ -213,7 +215,7 @@ SMODS.Joker{
                 message = '+'.. card.ability.extra.Xmult,
                 colour = G.C.MULT,
                 message_card = card,
-                sound = "brawl_lobster",
+                --sound = "brawl_lobster",
 			}
         end
     end 
@@ -684,18 +686,18 @@ SMODS.Joker{
     config = { extra = {xmult = 1, xmulttotal=1}},
 
     loc_vars = function(self, info_queue, card)
-        info_queue[#info_queue + 1] = {set = 'Other', key = "brawl_tooltip_brawler"}
+        --info_queue[#info_queue + 1] = {set = 'Other', key = "brawl_tooltip_brawler"}
 		return { vars = { card.ability.extra.xmult, card.ability.extra.xmulttotal, }  }
 	end,
 
     calculate = function(self, card, context)
-    brawlcount = 0
+    Brawlcount = 0
     for i = 1, #G.jokers.cards do
-        if G.jokers.cards[i].config.card.pools and G.jokers.cards[i].config.card.pools.Brawler then
-            brawlcount = brawlcount + 1
+        if G.jokers.cards[i].config.center.pools and G.jokers.cards[i].config.center.pools.Brawler then
+            Brawlcount = Brawlcount + 1
         end
     end
-    card.ability.extra.xmulttotal = brawlcount * card.ability.extra.xmult
+    card.ability.extra.xmulttotal = Brawlcount * card.ability.extra.xmult
     if context.joker_main then
         return {
             color = G.C.RED,

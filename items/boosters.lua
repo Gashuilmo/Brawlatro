@@ -6,8 +6,7 @@ SMODS.Atlas{
 }
 
 SMODS.Booster{
-    key = 'booster_megabox',
-    group_key = "k_brawlatro_booster_group",
+    key = 'megabox_booster',
     atlas = 'mega_box', 
     pos = { x = 0, y = 0 },
     discovered = true,
@@ -15,7 +14,7 @@ SMODS.Booster{
         name = 'MEGA BOX',
         text = { "Pick {C:attention}#1#{} Brawler out of",
                 "{C:attention}#2#{} Brawler jokers!", },
-        group_name = {"MegaBox"},
+        group_name = {"Mega Box"},
     },
     
     draw_hand = false,
@@ -28,7 +27,7 @@ SMODS.Booster{
         return { vars = { card.ability.choose, card.ability.extra } }
     end,
 
-    weight = 10,
+    weight = 6,
     cost = 5,
     kind = "BrawlPack",
     

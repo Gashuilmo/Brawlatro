@@ -100,8 +100,8 @@ descriptions = {
                 name = "YOUR BIGGEST FAN",
                 text = {
                     "For each {C:attention}Brawler{} Joker",
-                    "in your deck, this Joker gains {X:mult,C:white}X#2#{} Mult",
-                    "{C:inactive}Currently {X:mult,C:white}X#1#{} {C:inactive}Mult{}",
+                    "in your deck, this Joker gains {X:mult,C:white}X#1#{} Mult",
+                    "{C:inactive}Currently {X:mult,C:white}X#2#{} {C:inactive}Mult{}",
                 }
             },
             j_brawl_debt = {
@@ -184,7 +184,7 @@ descriptions = {
         dictionary = {
             b_gear_cards = "Gear Cards",
             k_gear = "Gear",
-            k_plus_gear = "+1 Gear"
+            k_plus_gear = "+1 Gear",
         },
         labels = {
             brawl_gadget_seal = "Gadget",
