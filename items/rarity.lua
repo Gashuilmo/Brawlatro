@@ -88,15 +88,8 @@ SMODS.ConsumableType {
     key = "Gear",
     primary_colour = HEX("1ab1ff"),
     secondary_colour = HEX("3bdcff"),
-    loc_text = {
-        name = "Gear",
-        collection = "Gear",
-        undiscovered = {
- 			name = 'Undiscovered',
- 			text = { 'Obtain this card to discover it' },
-    },
-},
-    collection_row = {6, 6},
+
+    collection_row = {6, 2},
     shop_rate = 2,
     default = "c_brawl_mandycrush",
     no_collection = false,

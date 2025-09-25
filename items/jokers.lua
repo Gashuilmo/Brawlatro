@@ -15,7 +15,6 @@ SMODS.Atlas{
     px = 71,
     py = 95,
 }
-SMODS.Sound({key = "sushiroll", path = "kenji_lead_vo_01.ogg",})
 SMODS.Joker{
     key = 'buffet',
     atlas = 'kenjisushi',
@@ -44,9 +43,7 @@ SMODS.Joker{
         end
         if context.using_consumeable then
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.additional
-            return { message = "Sushi Time!", 
-            --sound = "brawl_sushiroll", 
-            }
+            return { message = localize("sushi_time"),}
         end
     end
 }
@@ -59,7 +56,6 @@ SMODS.Atlas{
     py = 95,
 }
 SMODS.Sound({key = "startgambling", path = "chester_ulti_vo_02.ogg",})
-SMODS.Sound({key = "chesterlol", path = "chester_ulti_vo_08.ogg",})
 SMODS.Joker{
     key = 'chesterjoker',
     --+ X10Mult
@@ -88,9 +84,9 @@ SMODS.Joker{
 
     calculate = function(self, card, context)
 		if context.setting_blind then
+            play_sound("brawl_startgambling",1,0.5)
             return {
                 message = "What will it be !",
-                sound = "brawl_startgambling"
             }
         end
         if context.individual and context.cardarea == G.play then
@@ -123,9 +119,7 @@ SMODS.Joker{
                     dollars = -card.ability.extra.money,
                 }
             elseif context.individual and context.cardarea == G.play then
-               return { message = "Lol !",
-                        sound = "brawl_chesterlol"
-                } 
+               return { message = "Lol !",} 
             end
         end
     end
@@ -165,11 +159,15 @@ SMODS.Joker{
         end
         if context.end_of_round and context.game_over == false and context.main_eval and G.GAME.blind.boss then
             card.ability.extra.surgemult = card.ability.extra.surgemult + card.ability.extra.increase
+            play_sound("brawl_surged",1,0.5)
             return {
                     message = "Upgrade !",
                     message_card = card,
-                    sound = "brawl_surged"
                 }
+        end
+        if card.ability.extra.surgemult == 12 and context.end_of_round then
+            check_for_unlock({ type = "power_12" })
+        return true
         end
     end 
 }
@@ -181,7 +179,7 @@ SMODS.Atlas{
     px = 71,
     py = 95,
 }
-SMODS.Sound({key = "lobster", path = "clancy_ulti_vo_09.ogg", vol =0.1})
+SMODS.Sound({key = "levelup", path = "clancy_level_up.ogg"})
 SMODS.Joker{
     key = 'commando',
     atlas = 'commando',
@@ -196,37 +194,104 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { Xmult = 1, additional = 0.25}},
+    config = { extra = { Token = 0, additional = 1, stage = 1, stage_levelup = 5, mult = 5, ach_check = 0 }},
     loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.Xmult, card.ability.extra.additional } }
+		return { vars = { card.ability.extra.Token, card.ability.extra.additional, card.ability.extra.stage, card.ability.extra.stage_levelup, card.ability.extra.mult, card.ability.extra.ach_check}, key = card.ability.extra.stage == 3 and "j_brawl_commando_alt" or nil}    
 	end,
 
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play then 
-            card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.additional
-            return {
-                    message = 'Upgrade!',
-                    message_card = card
-                }
+        
+        if card.ability.extra.stage == 1 then
+            if context.individual and context.cardarea == G.play then 
+               card.ability.extra.Token = card.ability.extra.Token + card.ability.extra.additional
+            end
         end
+        if context.joker_main and card.ability.extra.stage == 1 then
+                if card.ability.extra.Token >= card.ability.extra.stage_levelup then
+                    G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.1,
+                    func = function()
+                        card.children.center:set_sprite_pos({x= 1 ,y= 0})
+                        SMODS.calculate_effect({message = localize('k_stage2'),colour = G.C.RED}, card)
+                        play_sound("brawl_levelup", 1, 0.5)
+                        return true
+                    end
+                    }))
+                    card.ability.extra.Token = card.ability.extra.Token - card.ability.extra.stage_levelup
+                    card.ability.extra.stage = card.ability.extra.stage + 1
+                    card.ability.extra.stage_levelup = card.ability.extra.stage_levelup * 2
+                    card.ability.extra.mult = card.ability.extra.mult * 2
+                end
+        end
+
+        if card.ability.extra.stage == 2 then
+            if context.individual and context.cardarea == G.play then 
+                card.ability.extra.Token = card.ability.extra.Token + card.ability.extra.additional
+            end
+        end
+        if context.joker_main and card.ability.extra.stage == 2 then
+                if card.ability.extra.Token >= card.ability.extra.stage_levelup then
+                    G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.1,
+                    func = function()
+                        card.children.center:set_sprite_pos({x= 2 ,y= 0})
+                        SMODS.calculate_effect({message = localize('k_stage3'),colour = G.C.RED}, card)
+                        play_sound("brawl_levelup", 1, 0.5)
+                        return true
+                    end
+                    }))
+                    card.ability.extra.Token = card.ability.extra.Token - card.ability.extra.stage_levelup
+                    card.ability.extra.stage_levelup = card.ability.extra.stage_levelup * 2
+                    card.ability.extra.stage = card.ability.extra.stage + 1
+            end
+        end
+
+        if card.ability.extra.stage == 3 then
+            if context.individual and context.cardarea == G.play then 
+                card.ability.extra.Token = card.ability.extra.Token + card.ability.extra.additional
+            end
+        end
+
+        if card.ability.extra.Token >= 4 and card.ability.extra.mult == 0 then
+            check_for_unlock({ type = "WAR" })
+            card.ability.extra.mult = 1
+        return true
+        end --THE FUCKING COLLABS AND BALANCE THOSE DAMN HYPERCHARGES
+
+    if card.ability.extra.stage == 1 then
 		if context.joker_main then
 			return {
-                Xmult_mod = card.ability.extra.Xmult,
-                message = '+'.. card.ability.extra.Xmult,
-                colour = G.C.MULT,
-                message_card = card,
-                --sound = "brawl_lobster",
+                mult = 5,
 			}
         end
     end 
+    if card.ability.extra.stage == 2 then
+		if context.joker_main then
+			return {
+                mult = 10,
+			}
+        end
+    end
+
+    if card.ability.extra.stage == 3 then
+		if context.joker_main then
+			return {
+                xmult = 10,
+                xchips = 10,
+			}
+        end
+    end 
+end
 }
 
 --Meeple
 SMODS.Atlas{
     key = 'cheater',
     path = 'meeple.png',
-    px = 241,
-    py = 323,
+    px = 71,
+    py = 95,
 }
 SMODS.Joker{
     key = 'cheater',
@@ -417,7 +482,7 @@ SMODS.Joker{
                 end        
     end,
     remove_from_deck = function(self, card, from_debuff)
-G.GAME.discount_percent = -card.ability.extra.percent
+    G.GAME.discount_percent = -card.ability.extra.percent
                 for _, v in pairs(G.I.CARD) do
                     if v.set_cost then v:set_cost() end
                 end        
@@ -478,7 +543,7 @@ calculate = function(self, card, context )
                 card.ability.extra.hands_remaining = card.ability.extra.hands
                 --card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_gain
                 return {
-                    play_sound ("brawl_summon_bruce"),
+                    play_sound("brawl_summon_bruce",1,0.5),
                     --colour = G.C.RED,
                     SMODS.add_card({key = "j_brawl_bruce", stickers = {"eternal"}}),
                 }
@@ -541,7 +606,7 @@ SMODS.Joker{
             card:start_dissolve({G.C.RED})
             card = nil
             return {    
-            play_sound ("brawl_death"),
+            play_sound("brawl_death"),
             }
             end
         end
@@ -554,12 +619,10 @@ SMODS.Atlas{
     px = 71,
     py = 95,
 }
---SMODS.Sound { key = "music_jae_speed", path = "skateboard_menu.ogg", sync = { ['music1'] = true, ['music2'] = true, ['music3'] = true, ['music4'] = true, ['music5'] = true, , pitch = 1, vol = 0.5, select_music_track = function(self, card) return next(SMODS.find_card("jae_yong", true)) end, } }
---SMODS.Sound { key = "music_jae_heal", path = "skateboard_menu.ogg", sync = { ['music1'] = true, ['music2'] = true, ['music3'] = true, ['music4'] = true, ['music5'] = true, , pitch = 1, vol = 0.5, select_music_track = function(self, card) return next(SMODS.find_card("jae_yong", true)) end, } }
 SMODS.Sound({ key = "party_mode", path = "jae_speed_ulti_vo_06.ogg",})
-SMODS.Sound({ key = "party_mode_effect", path = "jae_healing_mode_01.ogg", vol = 0.5})
+SMODS.Sound({ key = "party_mode_effect", path = "jae_healing_mode_01.ogg"})
 SMODS.Sound({ key = "work_mode", path = "jae_speed_ulti_vo_04.ogg",})
-SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg",vol = 0.5})
+SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg"})
 
 SMODS.Joker{
     key = 'jae_yong',
@@ -576,32 +639,34 @@ SMODS.Joker{
 
     pos = {x=0, y= 0},
     soul_pos = {x=1, y=0},
-    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, work = "Work" , party = "Party", mode ="there is no" }},
+    config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, mode = localize("k_mode"), afterparty = 0}},
 
     loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.work, card.ability.extra.party }  }
+		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.afterparty},key = card.ability.extra.switch == 0 or card.ability.extra.switch == 1 and "j_brawl_commando_alt" or nil} 
 	end,
 
     calculate = function(self, card, context)
     if context.setting_blind and not context.blueprint then
         if card.ability.extra.switch == 0 then
             card.ability.extra.switch = card.ability.extra.switch + 1
-            card.ability.extra.mode = card.ability.extra.work
+            card.ability.extra.mode = localize("k_work")
+            card.ability.extra.afterparty = card.ability.extra.afterparty + 1
             return {
-                play_sound("brawl_work_mode"),
-                play_sound("brawl_work_mode_effect"),
-                message = "Show me some energy !",
-                G.C.MULT,
+                play_sound("brawl_work_mode", 1 , 0.5),
+                play_sound("brawl_work_mode_effect", 1 , 0.5),
+                message = localize("k_brawl_worktime"),
+                colour = G.C.MULT,
                 message_card = card,
             }
         elseif card.ability.extra.switch == 1 then
             card.ability.extra.switch = card.ability.extra.switch - 1
-            card.ability.extra.mode = card.ability.extra.party
+            card.ability.extra.mode = localize("k_brawl_partytime")
+            card.ability.extra.afterparty = card.ability.extra.afterparty + 1
             return {
-                play_sound("brawl_party_mode"),
-                play_sound("brawl_party_mode_effect"),
-                message = "Party time !",
-                G.C.CHIPS,
+                play_sound("brawl_party_mode", 1 , 0.5),
+                play_sound("brawl_party_mode_effect", 1 , 0.5),
+                message = localize("k_party"),
+                colour = G.C.CHIPS,
                 message_card = card,
             }
         end
@@ -617,9 +682,13 @@ SMODS.Joker{
             } 
         end
     end
+    if card.ability.extra.afterparty == 14 then
+            check_for_unlock({ type = "afterparty" })
+        return true
+    end
 end
 }
---Belle
+--Gadget
 SMODS.Atlas{
     key = 'activator',
     path = 'brawlstars.png',
@@ -632,7 +701,7 @@ SMODS.Joker{
     atlas = 'activator',
     rarity = 3,
     cost = 1,
-    pools = {["Brawler"]=true},
+    --pools = {["Brawler"]=true},
 
     unlocked = true,
     discovered = true,
@@ -687,7 +756,7 @@ SMODS.Joker{
     config = { extra = {xmult = 1, xmulttotal=1}},
 
     loc_vars = function(self, info_queue, card)
-        --info_queue[#info_queue + 1] = {set = 'Other', key = "brawl_tooltip_brawler"}
+        info_queue[#info_queue + 1] = {set = 'Other', key = "brawl_tooltip_brawler"}
 		return { vars = { card.ability.extra.xmult, card.ability.extra.xmulttotal, }  }
 	end,
 
@@ -707,13 +776,6 @@ SMODS.Joker{
         }
     end
 end,
-
-    check_for_unlock = function(self, args)
-        if args.type == 'test' then --not a real type, just a joke
-            unlock_card(self)
-        end
-        unlock_card(self) --unlocks the card if it isnt unlocked
-    end,
 }
 
 --Griff
@@ -748,24 +810,28 @@ SMODS.Joker{
         if context.brawl_ease_dollars and context.brawl_ease_dollars < 0 and not context.blueprint and not context.repetition then
                 card.ability.extra.moneyspent = card.ability.extra.moneyspent + (-context.brawl_ease_dollars)
                 card.ability.extra.chiptottal = card.ability.extra.chiptottal + (-context.brawl_ease_dollars * 2)
-            end
+        end
         
         if context.joker_main then
                 return {
                     chips = card.ability.extra.chiptottal,
                     message_card = card,
                 }
-            end
+        end
+        if card.ability.extra.moneyspent >= 17765 then
+            check_for_unlock({ type = "coins" })
+        return true
+        end
     end
 }
---How to count the money decreeasing
+--How to count the money decreasing
 local base_ease_dollars = ease_dollars
 function ease_dollars(mod, x)
     base_ease_dollars(mod, x)
 
     SMODS.calculate_context({brawl_ease_dollars = mod})
 end
---Leaving it here cuz why not
+--Leaving it because I need it
 
 --Moe
 SMODS.Atlas{
@@ -789,12 +855,12 @@ SMODS.Joker{
     perishable_compat = true,
     
     pos = {x=0, y= 0},
-    config = { extra = { chip = 0, chipdrilled = 25 } },
+    config = { extra = { chip = 0, chipdrilled = 25, chisel = 0 } },
     enhancement_gate = 'm_stone',
     loc_vars = function(self, info_queue, card)
         --info_queue[#info_queue+1] = G.P_CENTERS.m_stone
         return {
-            vars = { card.ability.extra.chip , card.ability.extra.chipdrilled }
+            vars = { card.ability.extra.chip , card.ability.extra.chipdrilled, card.ability.extra.chisel }
         }
 end,
   
@@ -803,12 +869,15 @@ calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play and SMODS.has_enhancement(context.other_card, 'm_stone') then
             if not context.other_card.debuff then 
             card.ability.extra.chip = card.ability.extra.chip + card.ability.extra.chipdrilled
+            card.ability.extra.chisel = card.ability.extra.chisel + card.ability.extra.chipdrilled
             return {message = "Drilled", colour = G.C.CHIPS,}
             end
         end
     end
-
     if context.destroy_card and context.cardarea == G.play and SMODS.has_enhancement(context.destroy_card, "m_stone") then
+        if card.ability.extra.chip >= 50 then
+            check_for_unlock({ type = "rat" })
+        return true end    
         --card:start_dissolve({G.C.RED})
         --card = nil
         return { --message = "Drilled",
@@ -825,4 +894,173 @@ calculate = function(self, card, context)
 end
 }
 
+--Pearl
+SMODS.Atlas{
+    key = 'pearlsheet',
+    path = 'pearl.png',
+    px = 71 ,
+    py = 95,
+}
+
+SMODS.Joker{
+    key = 'oven',
+    atlas = 'pearlsheet',
+    rarity = 3,
+    cost = 7,
+    pools = {["Brawler"] = true },
+    
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    
+    pos = {x=0, y= 0},
+    config = { extra = { prepare = 0, unleash = 0 } },
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue+1] = {set = 'Other', key = "brawl_tooltip_click"}
+        return { vars = { card.ability.extra.prepare,card.ability.extra.unleash } }
+
+    end,
+    calculate = function(self, card, context)
+        if context.card_clicked == card then
+            if card.ability.extra.prepare == 0 then
+            card.ability.extra.prepare = card.ability.extra.prepare + 1
+            elseif card.ability.extra.prepare == 1 then
+            card.ability.extra.prepare = card.ability.extra.prepare - 1
+            end
+        end
+
+        if card.ability.extra.prepare == 0 then
+            if card.ability.extra.unleash <= 95 then
+            card.children.center:set_sprite_pos({x= 0 ,y= 0})
+            elseif card.ability.extra.unleash == 100 then
+            card.children.center:set_sprite_pos({x= 0 ,y= 1})
+            end
+        end
+        if card.ability.extra.prepare == 1 then
+            if card.ability.extra.unleash <= 95 then
+            card.children.center:set_sprite_pos({x= 1 ,y= 0})
+            elseif card.ability.extra.unleash == 100 then
+            card.children.center:set_sprite_pos({x= 1 ,y= 1})
+            end
+        end
+
+
+        if context.individual and context.cardarea == G.play and not context.blueprint then
+            if card.ability.extra.prepare == 0 then 
+                if card.ability.extra.unleash == 100 then
+                    return true
+                elseif card.ability.extra.unleash <= 100 then
+                card.ability.extra.unleash = card.ability.extra.unleash + 10
+                end
+            end
+        end
+
+        if context.joker_main then
+            if card.ability.extra.prepare == 1 and card.ability.extra.unleash >= 10 then
+            return { mult = card.ability.extra.unleash}
+            end
+        end
+
+        if context.post_trigger and context.other_card.config.center.key == 'j_brawl_oven' and card.ability.extra.prepare == 1 then
+            card.ability.extra.unleash = card.ability.extra.unleash - card.ability.extra.unleash
+        end
+    end
+}
+
+local cardClick = Card.click
+function Card:click()
+    if self.area and self.area == G.jokers then
+        SMODS.calculate_context({card_clicked = self})
+    end
+    local ret = cardClick(self)
+    return ret
+end
+
+--Mina
+SMODS.Atlas{
+    key = 'combo',
+    path = 'combobrazil.png',
+    px = 71 ,
+    py = 95,
+}
+
+SMODS.Joker{
+    key = 'brazil',
+    atlas = 'combo',
+    rarity = 3,
+    cost = 7,
+    pools = {["Brawler"] = true },
+    
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    
+    pos = {x=0, y= 0},
+    config = { extra = { mult = 10, previous_hand = "None", combo = 0}},
+    loc_vars = function(self,info_queue,center)
+        return {vars = {center.ability.extra.mult,center.ability.extra.previous_hand, center.ability.extra.combo}}
+    end,
+    calculate = function(self,card,context)
+
+        if card.ability.extra.combo == 0 then
+            card.children.center:set_sprite_pos({x= 0 ,y= 0})
+        end
+        if card.ability.extra.combo == 1 then
+            card.children.center:set_sprite_pos({x= 1 ,y= 0})
+        end
+        if card.ability.extra.combo == 2 then
+            card.children.center:set_sprite_pos({x= 2 ,y= 0})
+        end
+
+        if context.before then
+            if card.ability.extra.previous_hand == "None" then
+                card.ability.extra.combo = card.ability.extra.combo + 1
+
+                card.ability.extra.previous_hand = G.GAME.last_hand_played
+                return {
+                    card = card,
+                    message = "Move it",
+                    colour = G.C.MULT
+                }
+
+            elseif G.GAME.last_hand_played == card.ability.extra.previous_hand then
+                card.ability.extra.combo = card.ability.extra.combo + 1
+
+                card.ability.extra.previous_hand = G.GAME.last_hand_played
+                return {
+                    card = card,
+                    message = 'Yeah !',
+                    colour = G.C.MULT
+                }
+
+            elseif G.GAME.last_hand_played ~= card.ability.extra.previous_hand then
+                card.ability.extra.combo = 0
+
+                card.ability.extra.previous_hand = "None"
+                return {
+                    card = card,
+                    message = 'Oh ...',
+                    colour = G.C.MULT
+                }
+            end  
+            card.ability.extra.previous_hand = G.GAME.last_hand_played   
+        end
+
+        if context.joker_main then
+            if card.ability.extra.combo == 3 then
+                card.ability.extra.combo = card.ability.extra.combo - 3
+            return {
+                card = card,
+                mult = card.ability.extra.mult,
+                message = "Stylish !",
+                colour = G.C.MULT
+            }
+            end
+        end
+    end
+}
 --------End of code

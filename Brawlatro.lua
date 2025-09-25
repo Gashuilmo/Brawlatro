@@ -2,6 +2,17 @@ if not Brawlatro then
 	Brawlatro = {}
 end
 
+SMODS.Font({
+    key = 'brawl_font',
+    path = 'lilitaone.ttf',
+    render_scale = 175,         -- Base size in pixels (default: 200)
+    TEXT_HEIGHT_SCALE = 0.83,   -- Line spacing (default: 0.83)
+    TEXT_OFFSET = {x = 0, y = -10}, -- Alignment tweak (default: {0,0})
+    FONTSCALE = 0.1,            -- Scale multiplier (default: 0.1)
+    squish = 1,                 -- Horizontal stretch (default: 1)
+    DESCSCALE = 1               -- Description scale (default: 1)
+})
+
 local mod_path = "" .. SMODS.current_mod.path
 Brawlatro.path = mod_path
 Brawlatro_config = SMODS.current_mod.config
@@ -39,10 +50,7 @@ SMODS.ObjectType({
 	end,
 })
 
---Brawlatro.nuuhstream = love.graphics.newVideoStream( Brawlatro.path .. "nuuh.ogv" )
---Brawlatro.nuuh = love.graphics.newVideo( Brawlatro.nuuhstream )
-
---Load Library Files
+--Load files
 local files = NFS.getDirectoryItems(mod_path .. "items")
 for _, file in ipairs(files) do
 	print("[Brawlatro] Loading lua file " .. file)
@@ -52,25 +60,3 @@ for _, file in ipairs(files) do
 	end
 	f()
 end
-
-
-
-
-
---Load misc stuff so i only hook things once
---local hook = love.load
---function love.load()
---	hook()
---		local full_path = (Brawlatro.path 
---		.."assets/" 
---		.. G.SETTINGS.GRAPHICS.texture_scaling 
---		.. "x/"
---		.. "horse.png")
---	file_data = assert(NFS.newFileData(full_path),("Epic fail"))
---	Brawlatro.horsepngimagedata = assert(love.image.newImageData(file_data),("Epic fail 2"))
---	Brawlatro.horsepng = assert(love.graphics.newImage(Brawlatro.horsepngimagedata),("Epic fail 3"))
---
---end
-
-----------------------------------------------------------
------------ MOD CODE END ----------------------------------

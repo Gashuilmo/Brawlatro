@@ -21,7 +21,7 @@ SMODS.Consumable({
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.destroy } }
     end,
-    use = function(self, card, area, copier)
+    use = function(self, card, context, area, copier)
         local destroyed_cards = {}
         local temp_hand = {}
         for k, v in ipairs(G.hand.cards) do temp_hand[#temp_hand+1] = v end
@@ -47,6 +47,10 @@ SMODS.Consumable({
                 return true end }))
         delay(0.5)
         SMODS.calculate_context({ remove_playing_cards = true, removed = destroyed_cards })
+        --if help then
+        --    check_for_unlock({ type = "queenie" })
+        --return true
+        --end
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0
@@ -70,7 +74,7 @@ SMODS.Consumable {
 	atlas = "gadgetinator",
     --pools = {["gear"]=true},
     unlocked = true,
-    discovered = true,
+    discovered = false,
     cost = 4,
 
     config = { extra = { max_highlighted = 1 }},
@@ -159,6 +163,10 @@ SMODS.Consumable {
 				return true
 			end,
 		}))
+        if G.GAME.current_round.discards_left == 0 then
+                check_for_unlock({ type = "blowaway" })
+        return true
+        end
     end,
     can_use = function(self, card)
         return G.hand and #G.hand.cards > 0

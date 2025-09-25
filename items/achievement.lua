@@ -1,27 +1,83 @@
 SMODS.Atlas{
-    key = "power12",
-    path = 'trophy.png',
-    px = 70,
-    py = 59,
+    key = "records",
+    path = 'records.png',
+    px = 52,
+    py = 52,
 }
-SMODS.Achievement {
-    key = "power12",
-    loc_txt = {
-        name = "Power 12",
-        description = {
-            "Have Surge reach a multiplier of 12"
-        },
-    },
-    atlas = "power12",
-    pos = {x = 0, y = 0},
+SMODS.Achievement ({
+    key = "power_12",
+    order = 1,
     bypass_all_unlocked = true,
-    hidden_text = false,
-    hidden_name = false,
-    unlock_condition = function(self, args, card)
-        if args.type == "boss_blind_win" then
-            if card.ability.extra.surgemult == 12 then
-                return true
-            end
-    end
-end
-}
+    hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "power_12" then return true end
+    end,
+})
+
+SMODS.Achievement ({
+    key = "coins",
+    order = 1,
+    bypass_all_unlocked = true,
+    hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "coins" then return true end
+    end,
+})
+
+SMODS.Achievement ({
+    key = "afterparty",
+    order = 1,
+    bypass_all_unlocked = true,
+    hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "afterparty" then return true end
+    end,
+})
+
+SMODS.Achievement ({
+    key = "blowaway",
+    order = 1,
+    bypass_all_unlocked = true,
+    --hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "blowaway" then return true end
+    end,
+})
+
+SMODS.Achievement ({
+    key = "rat",
+    order = 1,
+    bypass_all_unlocked = true,
+    --hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "rat" then return true end
+    end,
+})
+
+SMODS.Achievement ({
+    key = "WAR",
+    order = 1,
+    bypass_all_unlocked = true,
+    reset_on_startup = true,
+    --hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "WAR" then return true end
+    end,
+})
+
+--SMODS.Achievement ({
+--    key = "queenie",
+--    order = 1,
+--    bypass_all_unlocked = true,
+    --hidden_name = true,
+--    atlas = "records",
+--    unlock_condition = function(self, args)
+--        if args.type == "queenie" then return true end
+--    end,
+--})
