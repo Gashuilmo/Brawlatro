@@ -31,6 +31,7 @@ SMODS.ObjectType({
 		-- insert base game food jokers
 	end,
 })
+
 SMODS.ObjectType({
 	key = "Brawler",
 	default = "brawler",

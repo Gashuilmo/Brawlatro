@@ -94,3 +94,14 @@ SMODS.ConsumableType {
     default = "c_brawl_mandycrush",
     no_collection = false,
 }
+
+SMODS.ConsumableType {
+    key = "Voodoo",
+    primary_colour = HEX("9ab735"),
+    secondary_colour = HEX("9ab739"),
+
+    collection_row = {6, 2},
+    shop_rate = 2,
+    default = "c_brawl_Jujudoll",
+    no_collection = false,
+}

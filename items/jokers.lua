@@ -183,7 +183,7 @@ SMODS.Sound({key = "levelup", path = "clancy_level_up.ogg"})
 SMODS.Joker{
     key = 'commando',
     atlas = 'commando',
-    rarity = 2,
+    rarity = 3,
     cost = 4,
     pools = {["Brawler"]=true},
 
@@ -194,7 +194,7 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { Token = 0, additional = 1, stage = 1, stage_levelup = 5, mult = 5, ach_check = 0 }},
+    config = { extra = { Token = 0, additional = 1, stage = 1, stage_levelup = 45, mult = 5, ach_check = 0 }},
     loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.Token, card.ability.extra.additional, card.ability.extra.stage, card.ability.extra.stage_levelup, card.ability.extra.mult, card.ability.extra.ach_check}, key = card.ability.extra.stage == 3 and "j_brawl_commando_alt" or nil}    
 	end,
@@ -263,14 +263,14 @@ SMODS.Joker{
     if card.ability.extra.stage == 1 then
 		if context.joker_main then
 			return {
-                mult = 5,
+                mult = card.ability.extra.mult,
 			}
         end
     end 
     if card.ability.extra.stage == 2 then
 		if context.joker_main then
 			return {
-                mult = 10,
+                mult = card.ability.extra.mult,
 			}
         end
     end
@@ -345,161 +345,6 @@ calculate = function(self, card, context)
             G.shop:recalculate()
     end 
 end,
-}
-
---JuJu (going to be a long one) 
-SMODS.Atlas{
-    key = 'grisgris',
-    path = 'curse.png',
-    px = 71,
-    py = 95,
-}
-SMODS.Sound({key = "defeatcurse", path = "bs_juju_getshurt_002_04.ogg"})
-SMODS.Joker{
-    key = 'grisgris',
-    atlas = 'grisgris',
-    rarity = "brawl_cursed",
-    cost = 1,
-    pools = {["Grisgris"]=true},
-
-    unlocked = true,
-    discovered = true,
-    blueprint_compat = true,
-    eternal_compat = true,
-    perishable_compat = false,
-
-    pos = {x=0, y= 0},
-    config = { extra = {negativemult = 0.5, negativechips = 0.5, round = 0, maxround = 3}},
-
-    loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.negativemult,card.ability.extra.negativechips, card.ability.extra.round, card.ability.extra.maxround}}
-	end,
-
-calculate = function(self, card, context)
-		if context.joker_main then
-            return {
-                message_card = card,
-                xmult = card.ability.extra.negativemult,
-                xchips = card.ability.extra.negativechips,
-                message = "The curse weights on you",
-                }
-        end
-        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-            card.ability.extra.round = card.ability.extra.round + 1
-            if card.ability.extra.round >= card.ability.extra.maxround then 
-            ease_dollars(20)
-            card:start_dissolve({G.C.RED})
-            card = nil 
-            return {    
-            play_sound("brawl_defeatcurse")
-            }
-            end
-        end
-    end,
-}
-SMODS.Sound {
-    key = "music_grisgris",
-    path = "skateboard_menu.ogg",
-    sync = {
-        ['music1'] = true,
-        ['music2'] = true,
-        ['music3'] = true,
-        ['music4'] = true,
-        ['music5'] = true,
-    },
-    pitch = 1,
-    vol = 0.5,
-    select_music_track = function(self)
-        return next(SMODS.find_card("j_brawl_grisgris2", true))
-    end, 
-}
-SMODS.Joker{
-    key = 'grisgris2',
-    atlas = 'grisgris',
-    rarity = "brawl_cursed",
-    cost = 1,
-    pools = {["Grisgris"]=true},
-
-    unlocked = true,
-    discovered = true,
-    blueprint_compat = true,
-    eternal_compat = true,
-    perishable_compat = false,
-
-    pos = {x=0, y= 0},
-    config = { extra = {negativemult = 0.75, round = 0, maxround = 3, dollars = 20}},
-
-    loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.negativeXmult, card.ability.extra.round, card.ability.extra.maxround, card.ability.extra.dollars}}
-	end,
-
-    calculate = function(self, card, context)
-		if context.joker_main then
-            return {
-                message = "Baby Shark Doo Doo",
-                message_card = card,
-                }
-        end
-
-        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-            card.ability.extra.round = card.ability.extra.round + 1
-            if card.ability.extra.round >= card.ability.extra.maxround then 
-            ease_dollars(20)
-            card:start_dissolve({G.C.RED})
-            card = nil 
-            return {    
-            play_sound("brawl_defeatcurse")
-            }
-            end
-        end
-    end,
-}
-
-SMODS.Joker{
-    key = 'grisgris3',
-    atlas = 'grisgris',
-    rarity = "brawl_cursed",
-    cost = 1,
-    pools = {["Grisgris"]=true},
-
-    unlocked = true,
-    discovered = true,
-    blueprint_compat = true,
-    eternal_compat = true,
-    perishable_compat = false,
-
-    pos = {x=0, y= 0},
-    config = { extra = {percent = -15,  round = 0, maxround = 3, dollars = 24}},
-
-    loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.percent, card.ability.extra.round,card.ability.extra.maxround, card.ability.extra.dollars}}
-	end,
-
-    add_to_deck = function(self, card, from_debuff)
-    G.GAME.discount_percent = card.ability.extra.percent
-                for _, v in pairs(G.I.CARD) do
-                    if v.set_cost then v:set_cost() end
-                end        
-    end,
-    remove_from_deck = function(self, card, from_debuff)
-    G.GAME.discount_percent = -card.ability.extra.percent
-                for _, v in pairs(G.I.CARD) do
-                    if v.set_cost then v:set_cost() end
-                end        
-    end,
-    calculate = function(self, card, context)
-        if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
-            card.ability.extra.round = card.ability.extra.round + 1
-            if card.ability.extra.round >= card.ability.extra.maxround then 
-            ease_dollars(24)
-            card:start_dissolve({G.C.RED})
-            card = nil 
-            return {    
-            play_sound("brawl_defeatcurse")
-            }
-            end
-        end
-    end,
 }
 
 --Nita and Bruce(s)
@@ -612,6 +457,7 @@ SMODS.Joker{
         end
     end
 }
+
 --Jae-Yong
 SMODS.Atlas{
     key = 'jae_yong',
@@ -625,10 +471,10 @@ SMODS.Sound({ key = "work_mode", path = "jae_speed_ulti_vo_04.ogg",})
 SMODS.Sound({ key = "work_mode_effect", path = "jae_speed_mode_01.ogg"})
 
 SMODS.Joker{
-    key = 'jae_yong',
+    key = 'JaeYong',
     atlas = 'jae_yong',
     rarity = 2,
-    cost = 4,
+    cost = 3,
     pools = {["Brawler"]=true},
 
     unlocked = true,
@@ -636,13 +482,12 @@ SMODS.Joker{
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
-
     pos = {x=0, y= 0},
     soul_pos = {x=1, y=0},
     config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, mode = localize("k_mode"), afterparty = 0}},
 
     loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.afterparty},key = card.ability.extra.switch == 0 or card.ability.extra.switch == 1 and "j_brawl_commando_alt" or nil} 
+		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.afterparty}} 
 	end,
 
     calculate = function(self, card, context)
@@ -905,7 +750,7 @@ SMODS.Atlas{
 SMODS.Joker{
     key = 'oven',
     atlas = 'pearlsheet',
-    rarity = 3,
+    rarity = 2,
     cost = 7,
     pools = {["Brawler"] = true },
     
@@ -989,8 +834,8 @@ SMODS.Atlas{
 SMODS.Joker{
     key = 'brazil',
     atlas = 'combo',
-    rarity = 3,
-    cost = 7,
+    rarity = 2,
+    cost = 5,
     pools = {["Brawler"] = true },
     
     unlocked = true,
@@ -1063,4 +908,6 @@ SMODS.Joker{
         end
     end
 }
+
+
 --------End of code

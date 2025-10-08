@@ -74,30 +74,6 @@ descriptions = {
                     "{C:inactive,f:brawl_font}Consumable slot and Card areas in the shop{}",
                 },            
             },
-            j_brawl_grisgris = {
-                name = "{f:brawl_font}Gris-Gris",
-                text = { 
-                    "No Score ?",
-                    "Get {C:money,f:brawl_font}20${} after defeating the curse",
-                    "Debuff last for {C:attention,f:brawl_font}#3#{}/3 more rounds",
-                },
-            },
-            j_brawl_grisgris2 = {
-                name = "{f:brawl_font}Gris-Gris",
-                text = { 
-                    "Baby Shark Doo Doo",
-                    "Get {C:money,f:brawl_font}20${} after defeating the curse",
-                    "Debuff last {C:attention,f:brawl_font}#2#{}/3 more rounds",
-                },
-            },
-            j_brawl_grisgris3 = {
-                name = "{f:brawl_font}Gris-Gris",
-                text = { 
-                    "Unorigal but it's a WIP mod",
-                    "Get {C:money,f:brawl_font}20${} after defeating the curse",
-                    "Debuff last {C:attention,f:brawl_font}#2#{}/3 more rounds",
-                },
-            },
             j_brawl_shaman = {
                 name = "{f:brawl_font}Call Of The Wild",
                 text = {
@@ -115,9 +91,10 @@ descriptions = {
                     "I have {C:attention,f:brawl_font}#2#{}/3 round left to live",
                 },
             },
-            j_brawl_jae_yong = {
+            j_brawl_JaeYong = {
                 name = "{f:brawl_font}Mix It Up !",
-                text = {"{f:brawl_font}Switch between 2 modes every round",
+                text = {
+                    "{f:brawl_font}Switch between 2 modes every round",
                     "{f:brawl_font}Work mode : {X:mult,C:white,E:2,f:brawl_font}X#1#{}{f:brawl_font} Mult",
                     "{f:brawl_font}Party mode : {X:chips,C:white,E:2,f:brawl_font}X#2#{}{f:brawl_font} Chips",
                     "{f:brawl_font}Currently {C:attention,f:brawl_font,}#4#{}{f:brawl_font} mode",
@@ -300,6 +277,32 @@ descriptions = {
                 },
             },
         },
+    Voodoo = {
+            c_brawl_JujuDoll = {
+                name = "{f:brawl_font}Gris-Gris",
+                text = { 
+                    "No Score ?",
+                    "Get {C:money,f:brawl_font}20${} after defeating the curse",
+                    "Debuff last for {C:attention,f:brawl_font}#3#{}/3 more rounds",
+                },
+            },
+            c_brawl_JujuDoll2 = {
+                name = "{f:brawl_font}Gris-Gris",
+                text = { 
+                    "Baby Shark Doo Doo",
+                    "Get {C:money,f:brawl_font}20${} after defeating the curse",
+                    "Debuff last {C:attention,f:brawl_font}#2#{}/3 more rounds",
+                },
+            },
+            c_brawl_JujuDoll3 = {
+                name = "{f:brawl_font}Gris-Gris",
+                text = { 
+                    "Unorigal but it's a WIP mod",
+                    "Get {C:money,f:brawl_font}20${} after defeating the curse",
+                    "Debuff last {C:attention,f:brawl_font}#2#{}/3 more rounds",
+                },
+            },
+    }
     },
     misc = {
         achievement_names = {
@@ -326,6 +329,10 @@ descriptions = {
             k_gear = "Gear",
             k_plus_gear = "+1 Gear",
 
+            --Curse Related stuff
+            b_voodoo_cards = "Voodoo Cards", 
+            k_voodoo = "Curse",
+
             --Boosters
             k_brawl_minibox_booster = "GEAR CARD",
             k_brawl_megabox_booster = "BRAWLER JOKER",
@@ -335,6 +342,8 @@ descriptions = {
 
             --Chester
 
+            --Grisgris
+            curse = "Curse",
 
             --Clancy
             k_stage2 = "Stage 2!",

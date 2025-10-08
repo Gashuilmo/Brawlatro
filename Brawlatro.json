@@ -3,7 +3,7 @@
 	"name": "Brawlatro",
 	"display_name": "Brawlatro",
 	"author": ["Gashuilmo"],
-	"description": "Why is the Jester so op",
+	"description": "Nerf Miner",
 	"prefix": "brawl",
 	"main_file": "Brawlatro.lua",
 	"priority": 0,

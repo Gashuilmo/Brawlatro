@@ -9,30 +9,37 @@ SMODS.Sound({key = "summoncurse", path = "juju_summon_01.ogg"})
 SMODS.Consumable({
     key = "brawl_jujucurse",
     set = "Tarot",
-    object_type = "Consumable",
-    name = "jujucurse",
 	pos = {x=0, y= 0},
-	order = 99,
 	atlas = "jujucurse",
-    --pools = {["Tarot"]=true},
     unlocked = true,
     discovered = true,
     cost = 4,
 
-use = function(self, card, area, copier)
-        local card = create_card("Grisgris", G.Jokers, nil, nil, nil, nil, nil, 'jujucurse')
-        card:add_sticker("eternal", true)
-        card:add_to_deck()
-        --card:set_edition("e_negative",true)
-        G.jokers:emplace(card)
-        play_sound("brawl_summoncurse")
-        --card:start_materialize()
+config = { extra = { voodoo = 1 } },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.voodoo } }
     end,
-can_use = function(self, card)
-        if #G.jokers.cards < G.jokers.config.card_limit then
-            return true
+    use = function(self, card, area, copier)
+        for i = 1, math.min(card.ability.extra.voodoo, G.consumeables.config.card_limit - #G.consumeables.cards) do
+            G.E_MANAGER:add_event(Event({
+                trigger = "after",
+                delay = 0.4,
+                func = function()
+                    if G.consumeables.config.card_limit > #G.consumeables.cards then
+                        play_sound("brawl_summoncurse")
+                        card:set_eternal(true)
+                        SMODS.add_card({ set = "Voodoo" })
+                        card:juice_up(0.3, 0.5)
+                    end
+                    return true
+                end
+            }))
         end
-	end,
+        delay(0.6)
+    end,
+    can_use = function(self, card)
+        return G.consumeables and #G.consumeables.cards < G.consumeables.config.card_limit + 1
+    end
 })
 
 SMODS.Atlas{
@@ -44,12 +51,8 @@ SMODS.Atlas{
 SMODS.Consumable({
     key = "brawl_trunk",
     set = "Tarot",
-    object_type = "Consumable",
-    name = "trunk",
 	pos = {x=0, y= 0},
-	order = 99,
 	atlas = "trunk",
-    --pools = {["Tarot"]=true},
     unlocked = true,
     discovered = true,
     cost = 4,
