@@ -645,6 +645,7 @@ SMODS.Joker{
     perishable_compat = true,
     
     pos = {x=0, y= 0},
+    soul_pos = {x=1, y=0},
     config = { extra = {chip = 1, chiptottal = 0, moneyspent = 0 }},
 
     loc_vars = function(self, info_queue, card)
