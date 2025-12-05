@@ -921,5 +921,41 @@ SMODS.Joker{
     end
 }
 
+-- 8-Bit
+SMODS.Atlas{
+    key = 'eightbit',
+    path = '8bit.png',
+    px = 640 ,
+    py = 640,
+}
+SMODS.Joker{
+    key = 'eightbit',
+    atlas = 'eightbit',
+    rarity = 4,
+    cost = 8,
+    pools = {["Brawler"] = true },
+    
+    unlocked = true,
+    discovered = true,
+    blueprint_compat = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    
+    pos = {x=0, y= 0},
+    config = { extra = { chip = 2 }},
+
+    loc_vars = function(self, info_queue, card)
+        return { vars = { card.ability.extra.chip }  }
+    end,
+
+    calculate = function(self, card, context)
+
+        if context.joker_main then
+            return {
+                xchips = card.ability.extra.xmulttotal
+            }
+        end
+    end
+}
 
 --------End of code
