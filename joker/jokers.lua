@@ -923,14 +923,14 @@ SMODS.Joker{
 
 -- 8-Bit
 SMODS.Atlas{
-    key = 'eightbit',
-    path = '8bit.png',
-    px = 640 ,
-    py = 640,
+    key = 'sauropod',
+    path = 'doug.png',
+    px = 800 ,
+    py = 800,
 }
 SMODS.Joker{
-    key = 'eightbit',
-    atlas = 'eightbit',
+    key = 'hotdoug',
+    atlas = 'sauropod',
     rarity = 4,
     cost = 8,
     pools = {["Brawler"] = true },
@@ -942,20 +942,56 @@ SMODS.Joker{
     perishable_compat = true,
     
     pos = {x=0, y= 0},
-    config = { extra = { chip = 2 }},
+    config = { extra = { pity = 3 }},
 
     loc_vars = function(self, info_queue, card)
-        return { vars = { card.ability.extra.chip }  }
+        return { vars = { card.ability.extra.pity }  }
     end,
 
     calculate = function(self, card, context)
 
-        if context.joker_main then
-            return {
-                xchips = card.ability.extra.xmulttotal
-            }
+        --if G.GAME.current_round.hands_left  == 0 then
+        --    play_sound("revive",1,1)
+        --card.children.center:set_sprite_pos({x= 0 ,y= 1})
+        --end
+
+        local current_score = G.GAME.chips
+        local blind_score = G.GAME.blind.chips
+
+        local currChips =  hand_chips
+        local currMult = mult
+
+        local score_diff_out_of_100 = (current_score / blind_score) * 100
+
+    if G.GAME.current_round.hands_left  == 1 then
+        if score_diff_out_of_100 <= 50 then
+            if context.joker_main then
+                return {
+                    xchips = card.ability.extra.pity
+                }
+            end
         end
     end
+    
+    if G.GAME.current_round.hands_left  == 0 then
+        if score_diff_out_of_100 <= 75 then
+            if currChips > currMult then 
+                if context.joker_main then
+                    return {
+                        xchips = card.ability.extra.pity * 2
+                    }
+                end
+            elseif currMult >= currChips then
+                if context.joker_main then
+                    return {
+                        xmult = card.ability.extra.pity * 2
+                    }
+                end
+            end
+        end
+    end 
+
+end
 }
 
 --------End of code
