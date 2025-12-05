@@ -46,6 +46,17 @@ SMODS.Joker{
             return { message = localize("sushi_time"),}
         end
     end
+
+    --joker_display_def = function(JokerDisplay)
+	--	return {
+	--		text = {
+	--			{ text = "+", colour = G.C.MULT },
+	--			{ ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.MULT },
+	--		},
+	--	}
+	--end,
+
+    
 }
 
 --Chester
@@ -670,16 +681,16 @@ SMODS.Joker{
         end
     end
 }
---How to count the money decreasing
+
 local base_ease_dollars = ease_dollars
 function ease_dollars(mod, x)
     base_ease_dollars(mod, x)
 
     SMODS.calculate_context({brawl_ease_dollars = mod})
 end
---Leaving it because I need it
 
---Moe
+
+--Carl killed Moe
 SMODS.Atlas{
     key = 'drill',
     path = 'moe.png',
@@ -688,7 +699,7 @@ SMODS.Atlas{
 }
 
 SMODS.Joker{
-    key = 'tunnelrat',
+    key = 'carlpick',
     atlas = 'drill',
     rarity = 3,
     cost = 7,

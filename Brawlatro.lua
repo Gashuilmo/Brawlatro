@@ -22,6 +22,10 @@ SMODS.current_mod.optional_features = {
 	post_trigger = true,
 }
 
+if JokerDisplay then
+    SMODS.load_file("joker_display_definitions.lua")()
+end
+
 SMODS.ObjectType({
 	key = "Grisgris",
 	default = "grisgris",
@@ -61,3 +65,34 @@ for _, file in ipairs(files) do
 	end
 	f()
 end
+
+local files = NFS.getDirectoryItems(mod_path .. "joker")
+for _, file in ipairs(files) do
+	print("[Brawlatro] Loading lua file " .. file)
+	local f, err = SMODS.load_file("joker/" .. file)
+	if err then
+		error(err) 
+	end
+	f()
+end
+
+local files = NFS.getDirectoryItems(mod_path .. "consumeable")
+for _, file in ipairs(files) do
+	print("[Brawlatro] Loading lua file " .. file)
+	local f, err = SMODS.load_file("consumeable/" .. file)
+	if err then
+		error(err) 
+	end
+	f()
+end
+
+local files = NFS.getDirectoryItems(mod_path .. "shop")
+for _, file in ipairs(files) do
+	print("[Brawlatro] Loading lua file " .. file)
+	local f, err = SMODS.load_file("shop/" .. file)
+	if err then
+		error(err) 
+	end
+	f()
+end
+

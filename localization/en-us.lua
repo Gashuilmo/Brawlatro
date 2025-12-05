@@ -126,13 +126,12 @@ descriptions = {
                     "{C:inactive,f:brawl_font}Thank you for the {C:money,f:brawl_font}$#3#",
                 }
             },
-            j_brawl_tunnelrat = {
-                name = "{f:brawl_font}Driller 2000",
+            j_brawl_carlpick = {
+                name = "{f:brawl_font}Stone Breaker",
                 text = {
                     "{f:brawl_font}This Joker gains {X:chips,C:white,f:brawl_font}+#2# {}{f:brawl_font} Chips",
                     "{f:brawl_font}per scoring {C:attention,f:brawl_font}Stone card{}{f:brawl_font} played,",
-                    "{f:brawl_font}removes the {C:attention,f:brawl_font}stone enhancement",
-                    "{f:brawl_font}from this card",
+                    "{C:red,f:brawl_font}Destroy the card after scoring.",
                     "{C:inactive,f:brawl_font}(Currently {X:chips,C:white,f:brawl_font}+#1#{C:inactive,f:brawl_font} chips)",
                 },
             },
