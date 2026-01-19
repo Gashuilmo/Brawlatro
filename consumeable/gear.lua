@@ -160,6 +160,8 @@ SMODS.Consumable {
         end
     end,
     can_use = function(self, card)
-        return G.hand and #G.hand.cards > 0
+        if G.GAME.blind.in_blind then 
+            return G.hand and #G.hand.cards > 0
+        end
     end
 }

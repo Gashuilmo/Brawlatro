@@ -126,13 +126,12 @@ descriptions = {
                     "{C:inactive,f:brawl_font}Thank you for the {C:money,f:brawl_font}$#3#",
                 }
             },
-            j_brawl_tunnelrat = {
-                name = "{f:brawl_font}Driller 2000",
+            j_brawl_carlpick = {
+                name = "{f:brawl_font}Stone Breaker",
                 text = {
                     "{f:brawl_font}This Joker gains {X:chips,C:white,f:brawl_font}+#2# {}{f:brawl_font} Chips",
                     "{f:brawl_font}per scoring {C:attention,f:brawl_font}Stone card{}{f:brawl_font} played,",
-                    "{f:brawl_font}removes the {C:attention,f:brawl_font}stone enhancement",
-                    "{f:brawl_font}from this card",
+                    "{C:red,f:brawl_font}Destroy the card after scoring.",
                     "{C:inactive,f:brawl_font}(Currently {X:chips,C:white,f:brawl_font}+#1#{C:inactive,f:brawl_font} chips)",
                 },
             },
@@ -151,6 +150,15 @@ descriptions = {
                     "{f:brawl_font}in a row, score {C:red,f:brawl_font}#1# mult{}",
                     "{C:inactive,f:brawl_font}Poker Hand in play :{}{f:brawl_font} #2#",
                     "{f:brawl_font}Combo Progression #3#/3",
+                },
+            },
+            j_brawl_hotdoug = {
+                name = "{f:brawl_font}Hot Doug",
+                text = {
+                    "{f:brawl_font}Give a {C:attention,f:brawl_font}X10{}{f:brawl_font} Chips or Mult",
+                    "{f:brawl_font}if chips scored are less than",
+                    "{C:attention,f:brawl_font}30%{}{f:brawl_font} of required Blind chips",
+                    "{C:red,f:brawl_font}Self destructs if triggered{}",
                 },
             },
         },
@@ -310,8 +318,9 @@ descriptions = {
             ach_brawl_coins = "What Now",
             ach_brawl_afterparty = "The Party Never Ends",
             ach_brawl_blowaway = "Last Blow",
-            ach_brawl_rat = "Underground Artist",
+            ach_brawl_carl = "Underground Artist",
             ach_brawl_WAR = "WAR",
+            ach_brawl_LastLife = "Last Hot Dog",
             --ach_brawl_queenie = "{f:brawl_font}Down The ... Queen ?",
 		},
 		achievement_descriptions = {
@@ -319,8 +328,9 @@ descriptions = {
             ach_brawl_coins = "Amass a total of 17765$ with Griff's Tip Jar",
             ach_brawl_afterparty = "Have Jae-Yong experience a week",
             ach_brawl_blowaway = "Use Gale Force with 0 discard remaining",
-            ach_brawl_rat = "Chisel 20 Stone Card",
+            ach_brawl_carl = "Chisel 20 Stone Card",
             ach_brawl_WAR = "Acumulate 180 Tokens with Commando",
+            ach_brawl_LastLife = "Win a Blind with the power of a Hot Dog",
             --ach_brawl_queenie = "{f:brawl_font}Destroy 3 Queens",
 		},
         dictionary = {

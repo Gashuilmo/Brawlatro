@@ -49,13 +49,13 @@ SMODS.Achievement ({
 })
 
 SMODS.Achievement ({
-    key = "rat",
+    key = "carl",
     order = 1,
     bypass_all_unlocked = true,
     --hidden_name = true,
     atlas = "records",
     unlock_condition = function(self, args)
-        if args.type == "rat" then return true end
+        if args.type == "carl" then return true end
     end,
 })
 
@@ -68,6 +68,18 @@ SMODS.Achievement ({
     atlas = "records",
     unlock_condition = function(self, args)
         if args.type == "WAR" then return true end
+    end,
+})
+
+SMODS.Achievement ({
+    key = "LastLife",
+    order = 1,
+    bypass_all_unlocked = true,
+    reset_on_startup = true,
+    --hidden_name = true,
+    atlas = "records",
+    unlock_condition = function(self, args)
+        if args.type == "LastLife" then return true end
     end,
 })
 

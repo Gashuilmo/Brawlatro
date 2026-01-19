@@ -93,7 +93,7 @@ SMODS.Booster{
             set = "Gear",
             area = G.pack_cards,
             skip_materialize = true,
-            soulable = fal,
+            soulable = false,
         })
     end,
     select_card = 'consumeables',

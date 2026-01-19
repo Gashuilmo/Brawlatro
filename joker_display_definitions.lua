@@ -64,9 +64,42 @@ local jd_def = JokerDisplay.Definitions
 				}
 			}
 	
-	-- jd_def["j_brawl_JaeYong"] = later... again. God I love mode switch
+	jd_def["j_brawl_JaeYong"] = {
+		text = {
+				{
+				border_nodes = {
+					{ text = "X"},
+					{ ref_table = "card.joker_display_values", ref_value = "multiplier"},
+				}
+			}
+		},
+		calc_function = function(card)
+			if card.ability.extra.switch == 2 then
+				card.joker_display_values.multiplier = card.ability.extra.xmult
+			else
+				card.joker_display_values.multiplier = card.ability.extra.xchip
+			end
+		end,
 
-	-- activator
+		style_function = function (card, text, reminder_text, extra)
+			if text and text.children[1] then
+				text.children[1].config.colour = card.ability.extra.switch == 2 and G.C.MULT or G.C.CHIPS
+			end
+			return false
+		end
+	}
+
+
+	jd_def["j_brawl_activator"] = {
+		line_1 = {
+				{
+					border_nodes = {
+					{ text = "X"},
+					{ ref_table = "card.ability.extra", ref_value = "xmult"},
+				}
+			}
+		},	
+	}
 
 	jd_def["j_brawl_colette"] = {
 		text = {
@@ -106,9 +139,15 @@ local jd_def = JokerDisplay.Definitions
 
 	-- brazil - this is hell
 
-	jd_def["j_brawl_gambler"] = {
-		line_1 = {
-				{ text = "+", colour = G.C.CHIPS },
-				{ ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.CHIPS },
-			}
-		}
+	jd_def["j_brawl_hotdoug"] = { -- DNA from JokerDisplay
+    	text = {
+            { ref_table = "card.joker_display_values", ref_value = "active" },
+        },
+        calc_function = function(card)
+            card.joker_display_values.active = (G.GAME and G.GAME.current_round.hands_left  <= 1 and localize("b_active") or localize("b_inactive"))
+        end,
+		
+		style_function = function (card, text, reminder_text, extra)
+			text.children[1].config.colour = G.GAME.current_round.hands_left  <= 1 and G.C.GOLD or G.C.WHITE
+		end
+    }

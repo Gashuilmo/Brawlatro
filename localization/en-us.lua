@@ -97,6 +97,15 @@ descriptions = {
                     "{f:brawl_font}Switch between 2 modes every round",
                     "{f:brawl_font}Work mode : {X:mult,C:white,E:2,f:brawl_font}X#1#{}{f:brawl_font} Mult",
                     "{f:brawl_font}Party mode : {X:chips,C:white,E:2,f:brawl_font}X#2#{}{f:brawl_font} Chips",
+                    "{f:brawl_font}Currently {C:attention,f:brawl_font,}there's no{}{f:brawl_font} mode",
+                },
+            },
+            j_brawl_JaeYong_alt = {
+                name = "{f:brawl_font}Mix It Up !",
+                text = {
+                    "{f:brawl_font}Switch between 2 modes every round",
+                    "{f:brawl_font}Work mode : {X:mult,C:white,E:2,f:brawl_font}X#1#{}{f:brawl_font} Mult",
+                    "{f:brawl_font}Party mode : {X:chips,C:white,E:2,f:brawl_font}X#2#{}{f:brawl_font} Chips",
                     "{f:brawl_font}Currently {C:attention,f:brawl_font,}#4#{}{f:brawl_font} mode",
                 },
             },
@@ -150,6 +159,15 @@ descriptions = {
                     "{f:brawl_font}in a row, score {C:red,f:brawl_font}#1# mult{}",
                     "{C:inactive,f:brawl_font}Poker Hand in play :{}{f:brawl_font} #2#",
                     "{f:brawl_font}Combo Progression #3#/3",
+                },
+            },
+            j_brawl_hotdoug = {
+                name = "{f:brawl_font}Hot Doug",
+                text = {
+                    "{f:brawl_font}Give a {C:attention,f:brawl_font}X10{}{f:brawl_font} Chips or Mult",
+                    "{f:brawl_font}if chips scored are less than",
+                    "{C:attention,f:brawl_font}30%{}{f:brawl_font} of required Blind chips",
+                    "{C:red,f:brawl_font}Self destructs if triggered{}",
                 },
             },
         },
@@ -309,8 +327,9 @@ descriptions = {
             ach_brawl_coins = "What Now",
             ach_brawl_afterparty = "The Party Never Ends",
             ach_brawl_blowaway = "Last Blow",
-            ach_brawl_rat = "Underground Artist",
+            ach_brawl_carl = "Underground Artist",
             ach_brawl_WAR = "WAR",
+            ach_brawl_LastLife = "Last Hot Dog",
             --ach_brawl_queenie = "{f:brawl_font}Down The ... Queen ?",
 		},
 		achievement_descriptions = {
@@ -318,11 +337,19 @@ descriptions = {
             ach_brawl_coins = "Amass a total of 17765$ with Griff's Tip Jar",
             ach_brawl_afterparty = "Have Jae-Yong experience a week",
             ach_brawl_blowaway = "Use Gale Force with 0 discard remaining",
-            ach_brawl_rat = "Chisel 20 Stone Card",
+            ach_brawl_carl = "Chisel 20 Stone Card",
             ach_brawl_WAR = "Acumulate 180 Tokens with Commando",
+            ach_brawl_LastLife = "Win a Blind with the power of a Hot Dog",
             --ach_brawl_queenie = "{f:brawl_font}Destroy 3 Queens",
 		},
         dictionary = {
+
+            -- Sus
+            b_active = "Active",
+            b_inactive = "Inactive",
+
+
+
             --Gear Related stuff
             b_gear_cards = "Gear Cards",
             k_gear = "Gear",

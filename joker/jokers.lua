@@ -46,17 +46,6 @@ SMODS.Joker{
             return { message = localize("sushi_time"),}
         end
     end
-
-    --joker_display_def = function(JokerDisplay)
-	--	return {
-	--		text = {
-	--			{ text = "+", colour = G.C.MULT },
-	--			{ ref_table = "card.ability.extra", ref_value = "chips", colour = G.C.MULT },
-	--		},
-	--	}
-	--end,
-
-    
 }
 
 --Chester
@@ -205,7 +194,7 @@ SMODS.Joker{
     perishable_compat = false,
 
     pos = {x=0, y= 0},
-    config = { extra = { Token = 0, additional = 1, stage = 1, stage_levelup = 45, mult = 5, ach_check = 0 }},
+    config = { extra = { Token = 0, additional = 1, stage = 1, stage_levelup = 5, mult = 5, ach_check = 0 }},
     loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.Token, card.ability.extra.additional, card.ability.extra.stage, card.ability.extra.stage_levelup, card.ability.extra.mult, card.ability.extra.ach_check}, key = card.ability.extra.stage == 3 and "j_brawl_commando_alt" or nil}    
 	end,
@@ -498,12 +487,12 @@ SMODS.Joker{
     config = { extra = { xchip = 1.5, xmult= 1.5, switch = 0, mode = localize("k_mode"), afterparty = 0}},
 
     loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.afterparty}} 
+		return { vars = { card.ability.extra.xchip, card.ability.extra.xmult, card.ability.extra.switch, card.ability.extra.mode, card.ability.extra.afterparty}, key = card.ability.extra.switch >= 1 and "j_brawl_JaeYong_alt" or nil}
 	end,
 
     calculate = function(self, card, context)
     if context.setting_blind and not context.blueprint then
-        if card.ability.extra.switch == 0 then
+        if card.ability.extra.switch == 1 then
             card.ability.extra.switch = card.ability.extra.switch + 1
             card.ability.extra.mode = localize("k_work")
             card.ability.extra.afterparty = card.ability.extra.afterparty + 1
@@ -514,7 +503,7 @@ SMODS.Joker{
                 colour = G.C.MULT,
                 message_card = card,
             }
-        elseif card.ability.extra.switch == 1 then
+        elseif card.ability.extra.switch == 2 then
             card.ability.extra.switch = card.ability.extra.switch - 1
             card.ability.extra.mode = localize("k_brawl_partytime")
             card.ability.extra.afterparty = card.ability.extra.afterparty + 1
@@ -525,14 +514,25 @@ SMODS.Joker{
                 colour = G.C.CHIPS,
                 message_card = card,
             }
+        elseif card.ability.extra.switch == 0 then
+            card.ability.extra.switch = card.ability.extra.switch + 2
+            card.ability.extra.mode = localize("k_work")
+            card.ability.extra.afterparty = card.ability.extra.afterparty + 1
+            return {
+                play_sound("brawl_work_mode", 1 , 0.5),
+                play_sound("brawl_work_mode_effect", 1 , 0.5),
+                message = localize("k_brawl_worktime"),
+                colour = G.C.MULT,
+                message_card = card,
+            }
         end
     end
     if context.joker_main then
-        if card.ability.extra.switch == 0 then
+        if card.ability.extra.switch == 1 then
             return {
                 xchips = card.ability.extra.xchip,
             } 
-        elseif  card.ability.extra.switch == 1 then
+        elseif card.ability.extra.switch == 2 then
             return {
                 xmult = card.ability.extra.xmult,
             } 
@@ -733,7 +733,7 @@ calculate = function(self, card, context)
     end
     if context.destroy_card and context.cardarea == G.play and SMODS.has_enhancement(context.destroy_card, "m_stone") then
         if card.ability.extra.chip >= 50 then
-            check_for_unlock({ type = "rat" })
+            check_for_unlock({ type = "carl" })
         return true end    
         --card:start_dissolve({G.C.RED})
         --card = nil
@@ -780,7 +780,7 @@ SMODS.Joker{
 
     end,
     calculate = function(self, card, context)
-        if context.card_clicked == card then
+        if context.card_clicked == card and G.jokers.highlighted then
             if card.ability.extra.prepare == 0 then
             card.ability.extra.prepare = card.ability.extra.prepare + 1
             elseif card.ability.extra.prepare == 1 then
@@ -925,9 +925,13 @@ SMODS.Joker{
 SMODS.Atlas{
     key = 'sauropod',
     path = 'doug.png',
-    px = 800 ,
-    py = 800,
+    px = 71 ,
+    py = 95,
 }
+
+SMODS.Sound({ key = "doug_res", path = "doug_dog_appear_01.ogg",})
+SMODS.Sound({ key = "revive", path = "doug_revive_01.ogg",})
+
 SMODS.Joker{
     key = 'hotdoug',
     atlas = 'sauropod',
@@ -941,8 +945,9 @@ SMODS.Joker{
     eternal_compat = true,
     perishable_compat = true,
     
-    pos = {x=0, y= 0},
-    config = { extra = { pity = 3 }},
+    pos = {x=1, y= 0},
+    soul_pos = {x=1, y=1},
+    config = { extra = { pity = 10, hotdawg = 0, saved = 0 }},
 
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.pity }  }
@@ -950,10 +955,13 @@ SMODS.Joker{
 
     calculate = function(self, card, context)
 
-        --if G.GAME.current_round.hands_left  == 0 then
-        --    play_sound("revive",1,1)
-        --card.children.center:set_sprite_pos({x= 0 ,y= 1})
-        --end
+        if G.GAME.current_round.hands_left  == 1 and card.ability.extra.hotdawg == 0 then
+            card:juice_up(0.3, 0.5)
+            play_sound("brawl_doug_res",1.25,0.5)
+            card.ability.extra.hotdawg = card.ability.extra.hotdawg + 1
+        card.children.center:set_sprite_pos({x= 0 ,y= 1})
+        card.children.floating_sprite:set_sprite_pos({x= 0 ,y= 1})
+        end
 
         local current_score = G.GAME.chips
         local blind_score = G.GAME.blind.chips
@@ -962,35 +970,35 @@ SMODS.Joker{
         local currMult = mult
 
         local score_diff_out_of_100 = (current_score / blind_score) * 100
-
-    if G.GAME.current_round.hands_left  == 1 then
-        if score_diff_out_of_100 <= 50 then
+    
+    if G.GAME.current_round.hands_left  == 0 then
+        if score_diff_out_of_100 <= 70 then
             if context.joker_main then
-                return {
-                    xchips = card.ability.extra.pity
-                }
+                card.ability.extra.saved = card.ability.extra.saved + 1
+                    if currChips > currMult then    
+                        return {
+                            xchips = card.ability.extra.pity
+                        }
+                    elseif currMult >= currChips then
+                        return {
+                            xmult = card.ability.extra.pity
+                        }
+                    end
             end
         end
     end
-    
-    if G.GAME.current_round.hands_left  == 0 then
-        if score_diff_out_of_100 <= 75 then
-            if currChips > currMult then 
-                if context.joker_main then
-                    return {
-                        xchips = card.ability.extra.pity * 2
-                    }
-                end
-            elseif currMult >= currChips then
-                if context.joker_main then
-                    return {
-                        xmult = card.ability.extra.pity * 2
-                    }
-                end
-            end
-        end
-    end 
 
+    if context.end_of_round and context.game_over == false and context.main_eval and not context.blueprint then
+        if card.ability.extra.saved == 1 then 
+            check_for_unlock({ type = "LastLife" })
+            card:start_dissolve({G.C.RED})
+            card = nil
+            return {    
+            play_sound("brawl_revive")
+            }
+        end
+    end
+     
 end
 }
 
