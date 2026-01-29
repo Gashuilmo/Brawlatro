@@ -96,3 +96,12 @@ for _, file in ipairs(files) do
 	f()
 end
 
+local files = NFS.getDirectoryItems(mod_path .. "util")
+for _, file in ipairs(files) do
+	print("[Brawlatro] Loading lua file " .. file)
+	local f, err = SMODS.load_file("util/" .. file)
+	if err then
+		error(err) 
+	end
+	f()
+end

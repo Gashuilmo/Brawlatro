@@ -17,7 +17,7 @@ SMODS.Sound {
     pitch = 1,
     vol = 0.5,
     select_music_track = function(self)
-        return G.STAGE == G.STAGES.MAIN_MENU
+        return G.STAGE == G.STAGES.MAIN_MENU and Brawlatro_config.custom_menu_music
     end,
 }
 
@@ -33,12 +33,3 @@ SMODS.Sound {
         return G.STAGE == G.STAGES.MAIN_MENU
     end,
 }
-
-
-
---local randomSong = pseudorandom_element(lobby_music, 'seed')
-
---local lobby_music = {
-  --  babyshark_menu.ogg, skateboard_menu.ogg
-    --}
-
