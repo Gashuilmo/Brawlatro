@@ -53,8 +53,9 @@ SMODS.Consumable({
     set = "Tarot",
 	pos = {x=0, y= 0},
 	atlas = "trunk",
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
+    discovered = false,
+    no_collection = true,
     cost = 4,
     config = { max_highlighted = 2, mod_conv = 'm_brawl_dirty' },
     

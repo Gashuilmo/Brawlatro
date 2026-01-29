@@ -165,6 +165,7 @@ descriptions = {
                 name = "{f:brawl_font}Hot Doug",
                 text = {
                     "{f:brawl_font}Give a {C:attention,f:brawl_font}X10{}{f:brawl_font} Chips or Mult",
+                    "{f:brawl_font}in the last hand",
                     "{f:brawl_font}if chips scored are less than",
                     "{C:attention,f:brawl_font}30%{}{f:brawl_font} of required Blind chips",
                     "{C:red,f:brawl_font}Self destructs if triggered{}",

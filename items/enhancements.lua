@@ -8,8 +8,8 @@ SMODS.Enhancement {
     key = 'dirty',
     atlas = "dirty",
     pos = { x = 0, y = 0 },
-    unlocked = true,
-    discovered = true,
+    unlocked = false,
+    discovered = false,
     config = { extra = {chips = 1.2, mult = 1.2, odds = 2 }}, 
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.chips, card.ability.extra.mult,(G.GAME.probabilities.normal or 1), card.ability.extra.odds } }
