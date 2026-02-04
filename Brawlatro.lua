@@ -13,9 +13,10 @@ SMODS.Font({
     DESCSCALE = 1               -- Description scale (default: 1)
 })
 
+Brawlatro = Brawlatro or {}
 local mod_path = "" .. SMODS.current_mod.path
 Brawlatro.path = mod_path
-Brawlatro_config = SMODS.current_mod.config
+Brawlatro.config = SMODS.current_mod.config
 
 SMODS.current_mod.optional_features = {
     retrigger_joker = true,
