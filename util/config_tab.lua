@@ -40,45 +40,44 @@ return {
                             }
                         },
                 {
+                --n = G.UIT.R,
+                --            config = { align = "cm", padding = 0.01 },
+                --            nodes = {
+                --            create_option_cycle {
+                --                label = "Brawl Menu Soundtrack",
+                --                options = {"Classic", "Beta", "Starr Hub", "Gift Shop", "Retropolis", "Stunt Show", "Ranger Ranch", "Goldarm Gang", "Mortis Mortuary", "Ghost Station", "Swamp of Love (1)", "Swamp of Love (2)", "Alli Release", "Rumble Jungle", "Biodome", "Darryl's Ship", "Cursed Pirate", "Mystic Wanderers", "Snowtel", "Mexico", "Starr Studio", "Starr Toon", "Castle Courtyard", "Candy Land",  "Enchanted Woods", "Trunk Release", "Starr Force", "Super City", "Starrcade", "Deep Sea", "Velocirapids", "Pierce Release", "Sea Monsters Aquarium", "Glowbert Release", "Finx Release", "Katana Kingdom", "Kenji Release", "Kaze Release", "Melodie Release", "Jae-Yong EDM", "Jae-Yong Love", "Sk8 Beat", "Mina Release", "Bizarre Circus", "Oddity Shop", "Gigi Release", "Madevil Manor", "Lumi Release", "Ziggy Release" },
+                --                current_option = Brawlatro.config.brawl_menu.current_option,
+                --                ref_table = Brawlatro.config,
+                --                ref_value = "brawl_menu",
+                --                opt_callback = "brawl_menu_opt",
+                --                w = 6.5
+                --                },
+                --            }
+                --        },
+                --    {
+                --    n = G.UIT.R,
+                --    config = { align = "cm" },
+                --    nodes = {
+                --        {
+                --            n = G.UIT.C,
+                --            config = { align = "cm", padding = 0.01 },
+                --            nodes = {
+                --                create_toggle({
+                --                    label = "In Blind",
+                --                    ref_table = Brawlatro.config,
+                --                    ref_value = "sync",
+                --                })
+                --            }
+                --        },
+                --     }
+                --},
+                --{
                 n = G.UIT.R,
                             config = { align = "cm", padding = 0.01 },
                             nodes = {
                             create_option_cycle {
                                 label = "Brawl Menu Soundtrack",
-                                options = {"Classic", "Beta", "Starr Hub", "Gift Shop", "Retropolis", "Stunt Show", "Ranger Ranch", "Goldarm Gang", "Mortis Mortuary", "Ghost Station", "Swamp of Love (1)", "Swamp of Love (2)", "Alli Release", "Rumble Jungle", "Biodome", "Darryl's Ship", "Cursed Pirate", "Mystic Wanderers", "Snowtel", "Mexico", "Starr Studio", "Starr Toon", "Castle Courtyard", "Candy Land",  "Enchanted Woods", "Trunk Release", "Starr Force", "Super City", "Starrcade", "Deep Sea", "Velocirapids", "Pierce Release", "Sea Monsters Aquarium", "Glowbert Release", "Finx Release", "Katana Kingdom", "Kenji Release", "Kaze Release", "Melodie Release", "Jae-Yong EDM", "Jae-Yong Love", "Sk8 Beat", "Mina Release", "Bizarre Circus", "Oddity Shop", "Gigi Release", "Madevil Manor", "Lumi Release", "Ziggy Release" },
-                                current_option = Brawlatro.config.brawl_menu.current_option,
-                                ref_table = Brawlatro.config,
-                                ref_value = "brawl_menu",
-                                opt_callback = "brawl_menu_opt",
-                                w = 6.5
-                                },
-                            }
-                        },
-                    {
-                    n = G.UIT.R,
-                    config = { align = "cm" },
-                    nodes = {
-                        {
-                            n = G.UIT.C,
-                            config = { align = "cm", padding = 0.01 },
-                            nodes = {
-                                create_toggle({
-                                    label = "In Blind",
-                                    ref_table = Brawlatro.config,
-                                    ref_value = "sync",
-                                })
-                            }
-                        },
-                        --
-                    }
-                },
-                                {
-                n = G.UIT.R,
-                            config = { align = "cm", padding = 0.01 },
-                            nodes = {
-                            create_option_cycle {
-                                label = "Brawl Menu Soundtrack",
-                                options = {"Goldarm Gang","Castle Courtyard","Enchanted Woods"},
+                                options = {"Classic", "Beta", "Starr Hub", "Gift Shop", "Retropolis 1", "Retropolis 2", "Stunt Show", "Ranger Ranch", "Goldarm Gang", "Mortis Mortuary 1", "Mortis Mortuary 2", "Ghost Station", "Swamp of Love", "Rumble Jungle", "Biodome", "Darryl's Ship 1", "Darryl's Ship 2", "Mystic Wanderers 1", "Mystic Wanderers 2", "Snowtel", "Mexico 1", "Mexico 2", "Starr Studio", "Starr Toon", "Castle Courtyard", "Candy Land",  "Enchanted Woods", "Starr Force 1", "Starr Force 2", "Super City", "Starrcade 1", "Starrcade 2", "Deep Sea", "Velocirapids", "Sea Monsters Aquarium", "Katana Kingdom", "Sk8 Beat", "Bizarre Circus", "Oddity Shop", "Madevil Manor", },
                                 current_option = Brawlatro.config.blind_track.current_option,
                                 ref_table = Brawlatro.config,
                                 ref_value = "blind_track",
